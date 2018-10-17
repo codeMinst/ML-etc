@@ -1,0 +1,11 @@
+*.h5
+*.npz
+*.pkl
+*.jpg
+*.xml
+*.iml
+*.pyc
+dataset/
+numpyz/
+log/
+keras-2.1.2/

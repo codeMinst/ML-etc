@@ -1,0 +1,1395 @@
+
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+input_1 (InputLayer)         (None, 224, 224, 3)       0
+_________________________________________________________________
+block1_conv1 (Conv2D)        (None, 224, 224, 64)      1792
+_________________________________________________________________
+block1_conv2 (Conv2D)        (None, 224, 224, 64)      36928
+_________________________________________________________________
+block1_pool (MaxPooling2D)   (None, 112, 112, 64)      0
+_________________________________________________________________
+block2_conv1 (Conv2D)        (None, 112, 112, 128)     73856
+_________________________________________________________________
+block2_conv2 (Conv2D)        (None, 112, 112, 128)     147584
+_________________________________________________________________
+block2_pool (MaxPooling2D)   (None, 56, 56, 128)       0
+_________________________________________________________________
+block3_conv1 (Conv2D)        (None, 56, 56, 256)       295168
+_________________________________________________________________
+block3_conv2 (Conv2D)        (None, 56, 56, 256)       590080
+_________________________________________________________________
+block3_conv3 (Conv2D)        (None, 56, 56, 256)       590080
+_________________________________________________________________
+block3_pool (MaxPooling2D)   (None, 28, 28, 256)       0
+_________________________________________________________________
+block4_conv1 (Conv2D)        (None, 28, 28, 512)       1180160
+_________________________________________________________________
+block4_conv2 (Conv2D)        (None, 28, 28, 512)       2359808
+_________________________________________________________________
+block4_conv3 (Conv2D)        (None, 28, 28, 512)       2359808
+_________________________________________________________________
+block4_pool (MaxPooling2D)   (None, 14, 14, 512)       0
+_________________________________________________________________
+block5_conv1 (Conv2D)        (None, 14, 14, 512)       2359808
+_________________________________________________________________
+block5_conv2 (Conv2D)        (None, 14, 14, 512)       2359808
+_________________________________________________________________
+block5_conv3 (Conv2D)        (None, 14, 14, 512)       2359808
+_________________________________________________________________
+block5_pool (MaxPooling2D)   (None, 7, 7, 512)         0
+=================================================================
+Total params: 14,714,688
+Trainable params: 14,714,688
+Non-trainable params: 0
+_________________________________________________________________
+Found 6816 images belonging to 37 classes.
+Found 837 images belonging to 37 classes.
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 512)               12845568
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 512)               0
+_________________________________________________________________
+dense_2 (Dense)              (None, 37)                18981
+=================================================================
+Total params: 12,864,549
+Trainable params: 12,864,549
+Non-trainable params: 0
+_________________________________________________________________
+Train on 6816 samples, validate on 837 samples
+
+
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to
+==================================================================================================
+conv_7b_ac (Activation)         (None, 5, 5, 1536)   0           conv_7b_bn[0][0]
+==================================================================================================
+
+
+InceptionResNetV2(weights='imagenet', include_top=False,
+                  input_shape=(224, 224, 3))
+
+model.add(layers.Dense(labelColunt, activation='softmax', input_dim=5 * 5 * 1536))
+    model.summary()
+
+    model.compile(optimizer=optimizers.RMSprop(lr=2e-4),
+                  loss='categorical_crossentropy',
+                  metrics=['acc'])
+
+    history = model.fit(train_features,
+                        train_labels,
+                        epochs=80,
+                        batch_size=batch_size,
+                        validation_data=(validation_features,validation_labels))
+
+Epoch 80/80
+
+ 100/6816 [..............................] - ETA: 2s - loss: 0.1612 - acc: 0.9900
+ 300/6816 [>.............................] - ETA: 2s - loss: 0.2686 - acc: 0.9833
+ 500/6816 [=>............................] - ETA: 2s - loss: 0.2257 - acc: 0.9860
+ 700/6816 [==>...........................] - ETA: 2s - loss: 0.2303 - acc: 0.9857
+ 900/6816 [==>...........................] - ETA: 2s - loss: 0.2686 - acc: 0.9833
+1100/6816 [===>..........................] - ETA: 2s - loss: 0.2491 - acc: 0.9845
+1300/6816 [====>.........................] - ETA: 2s - loss: 0.2852 - acc: 0.9823
+1500/6816 [=====>........................] - ETA: 2s - loss: 0.3009 - acc: 0.9813
+1700/6816 [======>.......................] - ETA: 2s - loss: 0.3129 - acc: 0.9806
+1900/6816 [=======>......................] - ETA: 2s - loss: 0.2884 - acc: 0.9821
+2100/6816 [========>.....................] - ETA: 2s - loss: 0.2763 - acc: 0.9829
+2200/6816 [========>.....................] - ETA: 2s - loss: 0.2784 - acc: 0.9827
+2400/6816 [=========>....................] - ETA: 2s - loss: 0.2754 - acc: 0.9829
+2600/6816 [==========>...................] - ETA: 2s - loss: 0.2542 - acc: 0.9842
+2800/6816 [===========>..................] - ETA: 1s - loss: 0.2475 - acc: 0.9846
+2900/6816 [===========>..................] - ETA: 1s - loss: 0.2557 - acc: 0.9841
+3100/6816 [============>.................] - ETA: 1s - loss: 0.2652 - acc: 0.9835
+3300/6816 [=============>................] - ETA: 1s - loss: 0.2589 - acc: 0.9839
+3500/6816 [==============>...............] - ETA: 1s - loss: 0.2717 - acc: 0.9831
+3700/6816 [===============>..............] - ETA: 1s - loss: 0.2919 - acc: 0.9819
+3900/6816 [================>.............] - ETA: 1s - loss: 0.2934 - acc: 0.9818
+4100/6816 [=================>............] - ETA: 1s - loss: 0.2791 - acc: 0.9827
+4300/6816 [=================>............] - ETA: 1s - loss: 0.2736 - acc: 0.9830
+4500/6816 [==================>...........] - ETA: 1s - loss: 0.2686 - acc: 0.9833
+4700/6816 [===================>..........] - ETA: 1s - loss: 0.2675 - acc: 0.9834
+4900/6816 [====================>.........] - ETA: 0s - loss: 0.2632 - acc: 0.9837
+5100/6816 [=====================>........] - ETA: 0s - loss: 0.2560 - acc: 0.9841
+5300/6816 [======================>.......] - ETA: 0s - loss: 0.2585 - acc: 0.9840
+5500/6816 [=======================>......] - ETA: 0s - loss: 0.2550 - acc: 0.9842
+5700/6816 [========================>.....] - ETA: 0s - loss: 0.2488 - acc: 0.9846
+5900/6816 [========================>.....] - ETA: 0s - loss: 0.2459 - acc: 0.9847
+6100/6816 [=========================>....] - ETA: 0s - loss: 0.2431 - acc: 0.9849
+6300/6816 [==========================>...] - ETA: 0s - loss: 0.2482 - acc: 0.9846
+6500/6816 [===========================>..] - ETA: 0s - loss: 0.2430 - acc: 0.9849
+6700/6816 [============================>.] - ETA: 0s - loss: 0.2430 - acc: 0.9849
+6816/6816 [==============================] - 4s 537us/step - loss: 0.2436 - acc: 0.9849 - val_loss: 1.2656 - val_acc: 0.8507
+No of errors = 125/837
+Original label:Noelle_Pikus-Pace\15.jpg, Prediction :Nouriel_Roubini, confidence : 0.999
+Original label:Noelle_Pikus-Pace\22.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 1.000
+Original label:Noelle_Pikus-Pace\28.jpg, Prediction :ParkSunhee, confidence : 0.609
+Original label:Noelle_Pikus-Pace\3.jpg, Prediction :Nolito, confidence : 0.989
+Original label:Nolan_Roux\12.jpg, Prediction :Nomar_Garciaparra, confidence : 0.641
+Original label:Nolan_Roux\14.jpg, Prediction :Nora_Salinas, confidence : 0.999
+Original label:Nolan_Roux\19.jpg, Prediction :Nora_Salinas, confidence : 0.594
+Original label:Nolan_Roux\20.jpg, Prediction :Nolito, confidence : 0.989
+Original label:Nolan_Roux\24.jpg, Prediction :Nolito, confidence : 0.998
+Original label:Nolan_Roux\9.jpg, Prediction :Nolito, confidence : 0.964
+Original label:Nolito\15.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.859
+Original label:Nolito\17.jpg, Prediction :Nonito_Donaire, confidence : 1.000
+Original label:Nolwenn_Leroy\1.jpg, Prediction :Nora_Danish, confidence : 0.811
+Original label:Nolwenn_Leroy\13.jpg, Prediction :Nora_Salinas, confidence : 0.795
+Original label:Nolwenn_Leroy\19.jpg, Prediction :Nora_Danish, confidence : 0.868
+Original label:Nolwenn_Leroy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.569
+Original label:Nolwenn_Leroy\24.jpg, Prediction :Nora_Danish, confidence : 0.994
+Original label:Nolwenn_Leroy\3.jpg, Prediction :ivy, confidence : 0.755
+Original label:Nolwenn_Leroy\4.jpg, Prediction :Nova_Eliza, confidence : 0.743
+Original label:Nolwenn_Leroy\9.jpg, Prediction :Noelle_Reno, confidence : 0.821
+Original label:Nomar_Garciaparra\12.jpg, Prediction :Nori_Aoki, confidence : 0.996
+Original label:Nomar_Garciaparra\22.jpg, Prediction :Nori_Aoki, confidence : 0.565
+Original label:Nona_Gaye\20.jpg, Prediction :leejeongje, confidence : 0.409
+Original label:Nona_Gaye\25.jpg, Prediction :Noelle_Reno, confidence : 0.998
+Original label:Nonami_Takizawa\16.jpg, Prediction :Nora_Danish, confidence : 0.759
+Original label:Nonito_Donaire\11.jpg, Prediction :Nolito, confidence : 1.000
+Original label:Nonito_Donaire\15.jpg, Prediction :Nolan_Roux, confidence : 0.977
+Original label:Nonito_Donaire\25.jpg, Prediction :Nova_Eliza, confidence : 0.998
+Original label:Nora_Berra\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.993
+Original label:Nora_Danish\16.jpg, Prediction :Nova_Eliza, confidence : 0.747
+Original label:Nora_Foss_al-Jabri\10.jpg, Prediction :Nora_Salinas, confidence : 0.541
+Original label:Nora_Foss_al-Jabri\13.jpg, Prediction :Noelle_Reno, confidence : 0.498
+Original label:Nora_Foss_al-Jabri\15.jpg, Prediction :Nova_Eliza, confidence : 0.571
+Original label:Nora_Foss_al-Jabri\16.jpg, Prediction :Norah_ODonnell, confidence : 0.537
+Original label:Nora_Foss_al-Jabri\19.jpg, Prediction :Nova_Eliza, confidence : 0.997
+Original label:Nora_Foss_al-Jabri\21.jpg, Prediction :Nora_Danish, confidence : 0.993
+Original label:Nora_Foss_al-Jabri\23.jpg, Prediction :Noelle_Reno, confidence : 1.000
+Original label:Nora_Foss_al-Jabri\27.jpg, Prediction :Nora_Salinas, confidence : 0.454
+Original label:Nora_Foss_al-Jabri\28.jpg, Prediction :Nora_Salinas, confidence : 0.989
+Original label:Nora_Foss_al-Jabri\30.jpg, Prediction :Noelle_Reno, confidence : 0.799
+Original label:Nora_Foss_al-Jabri\7.jpg, Prediction :Nora_Salinas, confidence : 0.719
+Original label:Nora_Salinas\13.jpg, Prediction :Nora_Danish, confidence : 0.996
+Original label:Nora_Salinas\15.jpg, Prediction :Nora_Berra, confidence : 0.495
+Original label:Nora_Salinas\16.jpg, Prediction :ivy, confidence : 0.950
+Original label:Nora_Salinas\23.jpg, Prediction :Nolwenn_Leroy, confidence : 0.924
+Original label:Nora_Salinas\25.jpg, Prediction :Nolwenn_Leroy, confidence : 0.951
+Original label:Nora_Salinas\7.jpg, Prediction :Nora_Danish, confidence : 1.000
+Original label:Norbert_Blüm\7.jpg, Prediction :Norbert_Lammert, confidence : 0.525
+Original label:Norbert_Lammert\11.jpg, Prediction :Norbert_Blüm, confidence : 0.877
+Original label:Norbert_Lammert\16.jpg, Prediction :Norbert_Blüm, confidence : 0.722
+Original label:Norbert_Lammert\25.jpg, Prediction :moonjaein, confidence : 1.000
+Original label:Norbert_Lammert\26.jpg, Prediction :Norbert_Blüm, confidence : 0.987
+Original label:Nori_Aoki\13.jpg, Prediction :Nomar_Garciaparra, confidence : 0.992
+Original label:Nori_Aoki\15.jpg, Prediction :Nova_Eliza, confidence : 0.975
+Original label:Nori_Aoki\16.jpg, Prediction :yooseyoon, confidence : 0.993
+Original label:Nouriel_Roubini\24.jpg, Prediction :Noelle_Reno, confidence : 0.960
+Original label:Nova_Eliza\11.jpg, Prediction :Nora_Danish, confidence : 0.779
+Original label:ParkSunhee\9.jpg, Prediction :Nonito_Donaire, confidence : 0.878
+Original label:anheejeong\12.jpg, Prediction :moonjaein, confidence : 1.000
+Original label:anheejeong\13.jpg, Prediction :Norbert_Lammert, confidence : 1.000
+Original label:anheejeong\21.jpg, Prediction :moonjaein, confidence : 0.739
+Original label:ivy\3.jpg, Prediction :jeongryeonwon, confidence : 0.964
+Original label:ivy\4.jpg, Prediction :Nora_Salinas, confidence : 0.599
+Original label:ivy\5.jpg, Prediction :Nora_Danish, confidence : 0.824
+Original label:ivy\6.jpg, Prediction :Nova_Eliza, confidence : 0.999
+Original label:ivy\7.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.789
+Original label:ivy\8.jpg, Prediction :Nora_Danish, confidence : 0.995
+Original label:jeongryeonwon\10.jpg, Prediction :jeonhyoseong, confidence : 0.480
+Original label:jeongryeonwon\11.jpg, Prediction :Nolwenn_Leroy, confidence : 0.797
+Original label:jeongryeonwon\15.jpg, Prediction :Nora_Danish, confidence : 0.999
+Original label:jeongryeonwon\4.jpg, Prediction :ivy, confidence : 0.825
+Original label:jeonhyoseong\5.jpg, Prediction :Nora_Danish, confidence : 1.000
+Original label:jeonhyoseong\6.jpg, Prediction :Nora_Danish, confidence : 0.839
+Original label:jeonhyoseong\7.jpg, Prediction :ivy, confidence : 0.975
+Original label:jeonhyoseong\9.jpg, Prediction :Nova_Eliza, confidence : 0.990
+Original label:leejaemyeng\10.jpg, Prediction :anheejeong, confidence : 0.779
+Original label:leejaemyeng\24.jpg, Prediction :Norbert_Blüm, confidence : 0.899
+Original label:leejaemyeng\3.jpg, Prediction :moonjaein, confidence : 0.978
+Original label:leejeongje\10.jpg, Prediction :Nolan_Roux, confidence : 0.539
+Original label:leejeongje\14.jpg, Prediction :Nora_Salinas, confidence : 1.000
+Original label:leejeongje\2.jpg, Prediction :jeongryeonwon, confidence : 0.973
+Original label:leejeongje\5.jpg, Prediction :Nolito, confidence : 0.999
+Original label:leejeongje\8.jpg, Prediction :yooseyoon, confidence : 0.673
+Original label:leejeongje\9.jpg, Prediction :yooseyoon, confidence : 1.000
+Original label:moonjaein\11.jpg, Prediction :Nouriel_Roubini, confidence : 0.980
+Original label:moonjaein\13.jpg, Prediction :Nolan_Roux, confidence : 0.915
+Original label:moonjaein\14.jpg, Prediction :Norbert_Lammert, confidence : 0.978
+Original label:moonjaein\15.jpg, Prediction :anheejeong, confidence : 0.968
+Original label:moonjaein\24.jpg, Prediction :Nolan_Roux, confidence : 0.999
+Original label:moonjaein\8.jpg, Prediction :Norbert_Blüm, confidence : 0.506
+Original label:narsha\6.jpg, Prediction :Nora_Danish, confidence : 1.000
+Original label:narsha\7.jpg, Prediction :Nolwenn_Leroy, confidence : 0.584
+Original label:narsha\8.jpg, Prediction :ivy, confidence : 0.647
+Original label:narsha\9.jpg, Prediction :Nora_Danish, confidence : 0.815
+Original label:parknare\1.jpg, Prediction :Nora_Salinas, confidence : 0.926
+Original label:parknare\7.jpg, Prediction :jeongryeonwon, confidence : 0.926
+Original label:parknare\8.jpg, Prediction :Norah_ODonnell, confidence : 0.965
+Original label:parksohyun\1.jpg, Prediction :kimssok, confidence : 0.717
+Original label:parksohyun\10.jpg, Prediction :narsha, confidence : 0.673
+Original label:parksohyun\11.jpg, Prediction :narsha, confidence : 0.919
+Original label:parksohyun\2.jpg, Prediction :Nova_Eliza, confidence : 0.446
+Original label:parksohyun\3.jpg, Prediction :Nora_Danish, confidence : 0.969
+Original label:parksohyun\4.jpg, Prediction :Nora_Danish, confidence : 0.981
+Original label:parksohyun\5.jpg, Prediction :Nonami_Takizawa, confidence : 0.963
+Original label:parksohyun\6.jpg, Prediction :Nora_Danish, confidence : 0.393
+Original label:parksohyun\7.jpg, Prediction :Nora_Danish, confidence : 0.860
+Original label:parksohyun\8.jpg, Prediction :ParkMinjeong, confidence : 0.816
+Original label:parksohyun\9.jpg, Prediction :Nonami_Takizawa, confidence : 1.000
+Original label:songeunhee\1.jpg, Prediction :Nolwenn_Leroy, confidence : 1.000
+Original label:songeunhee\10.jpg, Prediction :Nonito_Donaire, confidence : 0.573
+Original label:songeunhee\2.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.750
+Original label:songeunhee\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.994
+Original label:songeunhee\4.jpg, Prediction :parknare, confidence : 0.721
+Original label:songeunhee\5.jpg, Prediction :Nova_Eliza, confidence : 0.919
+Original label:songeunhee\6.jpg, Prediction :leejaemyeng, confidence : 0.995
+Original label:songeunhee\7.jpg, Prediction :Norah_ODonnell, confidence : 0.996
+Original label:songeunhee\8.jpg, Prediction :Nolwenn_Leroy, confidence : 1.000
+Original label:songeunhee\9.jpg, Prediction :Norah_ODonnell, confidence : 0.954
+Original label:yooseyoon\10.jpg, Prediction :Nora_Danish, confidence : 0.781
+Original label:yooseyoon\11.jpg, Prediction :leejeongje, confidence : 0.481
+Original label:yooseyoon\3.jpg, Prediction :leejaemyeng, confidence : 0.864
+Original label:yooseyoon\5.jpg, Prediction :leejeongje, confidence : 0.912
+Original label:yooseyoon\6.jpg, Prediction :anheejeong, confidence : 0.989
+Original label:yooseyoon\7.jpg, Prediction :Nolwenn_Leroy, confidence : 1.000
+Original label:yooseyoon\9.jpg, Prediction :Nolwenn_Leroy, confidence : 0.993
+
+
+
+
+InceptionResNetV2(weights='imagenet', pooling='avg',
+                  include_top=False,
+                  input_shape=(224, 224, 3))
+
+    model.add(layers.Dense(512, activation='relu', input_dim=1536))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(labelColunt, activation='softmax'))
+    model.summary()
+
+    model.compile(optimizer=optimizers.RMSprop(lr=2e-4),
+                  loss='categorical_crossentropy',
+                  metrics=['acc'])
+
+    history = model.fit(train_features,
+                        train_labels,
+                        epochs=80,
+                        batch_size=batch_size,
+                        validation_data=(validation_features,validation_labels))
+
+Epoch 80/80
+
+ 100/6816 [..............................] - ETA: 0s - loss: 0.3265 - acc: 0.9200
+ 700/6816 [==>...........................] - ETA: 0s - loss: 0.2739 - acc: 0.9186
+1300/6816 [====>.........................] - ETA: 0s - loss: 0.2671 - acc: 0.9262
+1900/6816 [=======>......................] - ETA: 0s - loss: 0.2770 - acc: 0.9216
+2400/6816 [=========>....................] - ETA: 0s - loss: 0.2808 - acc: 0.9225
+2900/6816 [===========>..................] - ETA: 0s - loss: 0.2739 - acc: 0.9248
+3400/6816 [=============>................] - ETA: 0s - loss: 0.2798 - acc: 0.9229
+4000/6816 [================>.............] - ETA: 0s - loss: 0.2861 - acc: 0.9233
+4600/6816 [===================>..........] - ETA: 0s - loss: 0.2931 - acc: 0.9207
+5100/6816 [=====================>........] - ETA: 0s - loss: 0.2969 - acc: 0.9190
+5600/6816 [=======================>......] - ETA: 0s - loss: 0.2992 - acc: 0.9179
+6100/6816 [=========================>....] - ETA: 0s - loss: 0.3023 - acc: 0.9162
+6600/6816 [============================>.] - ETA: 0s - loss: 0.3019 - acc: 0.9162
+6816/6816 [==============================] - 1s 108us/step - loss: 0.3008 - acc: 0.9155 - val_loss: 0.7396 - val_acc: 0.7742
+No of errors = 189/837
+Original label:Noelle_Pikus-Pace\15.jpg, Prediction :Nouriel_Roubini, confidence : 0.386
+Original label:Noelle_Pikus-Pace\22.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.386
+Original label:Noelle_Pikus-Pace\25.jpg, Prediction :Nora_Salinas, confidence : 0.569
+Original label:Noelle_Pikus-Pace\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.806
+Original label:Noelle_Reno\25.jpg, Prediction :Norah_ODonnell, confidence : 0.581
+Original label:Nolan_Roux\1.jpg, Prediction :Nolito, confidence : 0.644
+Original label:Nolan_Roux\12.jpg, Prediction :Nolito, confidence : 0.519
+Original label:Nolan_Roux\14.jpg, Prediction :Nora_Salinas, confidence : 0.664
+Original label:Nolan_Roux\15.jpg, Prediction :Nora_Danish, confidence : 0.385
+Original label:Nolan_Roux\18.jpg, Prediction :Nolito, confidence : 0.930
+Original label:Nolan_Roux\19.jpg, Prediction :Nora_Danish, confidence : 0.563
+Original label:Nolan_Roux\20.jpg, Prediction :Nolito, confidence : 0.623
+Original label:Nolan_Roux\24.jpg, Prediction :Nolito, confidence : 0.704
+Original label:Nolan_Roux\3.jpg, Prediction :anheejeong, confidence : 0.477
+Original label:Nolan_Roux\6.jpg, Prediction :Nolito, confidence : 0.792
+Original label:Nolan_Roux\9.jpg, Prediction :Nolito, confidence : 0.567
+Original label:Nolito\15.jpg, Prediction :Nolan_Roux, confidence : 0.452
+Original label:Nolito\21.jpg, Prediction :Nolan_Roux, confidence : 0.608
+Original label:Nolwenn_Leroy\1.jpg, Prediction :Nora_Danish, confidence : 0.441
+Original label:Nolwenn_Leroy\13.jpg, Prediction :Nora_Salinas, confidence : 0.689
+Original label:Nolwenn_Leroy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.838
+Original label:Nolwenn_Leroy\3.jpg, Prediction :kimssok, confidence : 0.274
+Original label:Nolwenn_Leroy\4.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.396
+Original label:Nolwenn_Leroy\9.jpg, Prediction :Nora_Danish, confidence : 0.593
+Original label:Nomar_Garciaparra\20.jpg, Prediction :Nolan_Roux, confidence : 0.373
+Original label:Nomar_Garciaparra\22.jpg, Prediction :Nolwenn_Leroy, confidence : 0.383
+Original label:Nomar_Garciaparra\26.jpg, Prediction :Nouriel_Roubini, confidence : 0.462
+Original label:Nomar_Garciaparra\27.jpg, Prediction :leejeongje, confidence : 0.336
+Original label:Nona_Gaye\10.jpg, Prediction :Nova_Eliza, confidence : 0.629
+Original label:Nona_Gaye\11.jpg, Prediction :Nova_Eliza, confidence : 0.466
+Original label:Nona_Gaye\13.jpg, Prediction :Nova_Eliza, confidence : 0.643
+Original label:Nona_Gaye\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.598
+Original label:Nona_Gaye\22.jpg, Prediction :Norah_ODonnell, confidence : 0.388
+Original label:Nona_Gaye\27.jpg, Prediction :Noelle_Reno, confidence : 0.777
+Original label:Nona_Gaye\3.jpg, Prediction :Nova_Eliza, confidence : 0.878
+Original label:Nonami_Takizawa\16.jpg, Prediction :Nora_Danish, confidence : 0.655
+Original label:Nonito_Donaire\11.jpg, Prediction :Nolito, confidence : 0.771
+Original label:Nonito_Donaire\15.jpg, Prediction :Nolan_Roux, confidence : 0.923
+Original label:Nonito_Donaire\16.jpg, Prediction :Nouriel_Roubini, confidence : 0.634
+Original label:Nonito_Donaire\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.921
+Original label:Nonito_Donaire\25.jpg, Prediction :Nova_Eliza, confidence : 0.796
+Original label:Nonito_Donaire\26.jpg, Prediction :Nouriel_Roubini, confidence : 0.638
+Original label:Nonito_Donaire\28.jpg, Prediction :Nolan_Roux, confidence : 0.648
+Original label:Nonito_Donaire\3.jpg, Prediction :Nolan_Roux, confidence : 0.710
+Original label:Nonito_Donaire\5.jpg, Prediction :Nova_Eliza, confidence : 0.456
+Original label:Nonito_Donaire\9.jpg, Prediction :Nouriel_Roubini, confidence : 0.508
+Original label:Nora_Berra\19.jpg, Prediction :Nora_Salinas, confidence : 0.496
+Original label:Nora_Berra\28.jpg, Prediction :Nora_Salinas, confidence : 0.431
+Original label:Nora_Berra\30.jpg, Prediction :Nora_Danish, confidence : 0.447
+Original label:Nora_Berra\5.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.510
+Original label:Nora_Berra\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.648
+Original label:Nora_Danish\12.jpg, Prediction :Nova_Eliza, confidence : 0.616
+Original label:Nora_Foss_al-Jabri\10.jpg, Prediction :Nora_Berra, confidence : 0.670
+Original label:Nora_Foss_al-Jabri\11.jpg, Prediction :Nora_Danish, confidence : 0.804
+Original label:Nora_Foss_al-Jabri\12.jpg, Prediction :Nonami_Takizawa, confidence : 0.629
+Original label:Nora_Foss_al-Jabri\13.jpg, Prediction :Norah_ODonnell, confidence : 0.603
+Original label:Nora_Foss_al-Jabri\15.jpg, Prediction :Nora_Berra, confidence : 0.432
+Original label:Nora_Foss_al-Jabri\16.jpg, Prediction :Nora_Salinas, confidence : 0.735
+Original label:Nora_Foss_al-Jabri\17.jpg, Prediction :Nora_Salinas, confidence : 0.449
+Original label:Nora_Foss_al-Jabri\18.jpg, Prediction :Nora_Berra, confidence : 0.412
+Original label:Nora_Foss_al-Jabri\19.jpg, Prediction :Nova_Eliza, confidence : 0.327
+Original label:Nora_Foss_al-Jabri\20.jpg, Prediction :Nonami_Takizawa, confidence : 0.303
+Original label:Nora_Foss_al-Jabri\21.jpg, Prediction :Nora_Danish, confidence : 0.689
+Original label:Nora_Foss_al-Jabri\23.jpg, Prediction :Noelle_Reno, confidence : 0.967
+Original label:Nora_Foss_al-Jabri\24.jpg, Prediction :Nolwenn_Leroy, confidence : 0.387
+Original label:Nora_Foss_al-Jabri\25.jpg, Prediction :Nonami_Takizawa, confidence : 0.373
+Original label:Nora_Foss_al-Jabri\27.jpg, Prediction :Nora_Salinas, confidence : 0.339
+Original label:Nora_Foss_al-Jabri\28.jpg, Prediction :Nora_Salinas, confidence : 0.744
+Original label:Nora_Foss_al-Jabri\3.jpg, Prediction :Nora_Berra, confidence : 0.679
+Original label:Nora_Foss_al-Jabri\30.jpg, Prediction :Nora_Berra, confidence : 0.257
+Original label:Nora_Foss_al-Jabri\4.jpg, Prediction :Nora_Danish, confidence : 0.461
+Original label:Nora_Foss_al-Jabri\5.jpg, Prediction :Nora_Salinas, confidence : 0.787
+Original label:Nora_Foss_al-Jabri\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.816
+Original label:Nora_Salinas\10.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.408
+Original label:Nora_Salinas\13.jpg, Prediction :Nora_Danish, confidence : 0.707
+Original label:Nora_Salinas\15.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.355
+Original label:Nora_Salinas\19.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.614
+Original label:Nora_Salinas\22.jpg, Prediction :Nora_Berra, confidence : 0.261
+Original label:Nora_Salinas\24.jpg, Prediction :Nora_Danish, confidence : 0.606
+Original label:Nora_Salinas\25.jpg, Prediction :Nora_Danish, confidence : 0.464
+Original label:Nora_Salinas\7.jpg, Prediction :Nora_Danish, confidence : 0.916
+Original label:Norbert_Blüm\10.jpg, Prediction :leejaemyeng, confidence : 0.387
+Original label:Norbert_Blüm\19.jpg, Prediction :Norbert_Lammert, confidence : 0.604
+Original label:Norbert_Blüm\23.jpg, Prediction :Norbert_Lammert, confidence : 0.608
+Original label:Norbert_Blüm\7.jpg, Prediction :Norbert_Lammert, confidence : 0.548
+Original label:Norbert_Lammert\16.jpg, Prediction :Norbert_Blüm, confidence : 0.922
+Original label:Norbert_Lammert\23.jpg, Prediction :Nouri_al-Maliki, confidence : 0.662
+Original label:Norbert_Lammert\25.jpg, Prediction :moonjaein, confidence : 0.715
+Original label:Norbert_Lammert\26.jpg, Prediction :Norbert_Blüm, confidence : 0.990
+Original label:Nori_Aoki\13.jpg, Prediction :Nomar_Garciaparra, confidence : 0.960
+Original label:Nori_Aoki\15.jpg, Prediction :Nomar_Garciaparra, confidence : 0.974
+Original label:Nori_Aoki\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.743
+Original label:Nouriel_Roubini\14.jpg, Prediction :moonjaein, confidence : 0.175
+Original label:Nouriel_Roubini\17.jpg, Prediction :Nolan_Roux, confidence : 0.877
+Original label:Nouriel_Roubini\23.jpg, Prediction :moonjaein, confidence : 0.396
+Original label:Nouriel_Roubini\24.jpg, Prediction :Noelle_Reno, confidence : 0.637
+Original label:Nouriel_Roubini\26.jpg, Prediction :Nonito_Donaire, confidence : 0.674
+Original label:Nova_Eliza\11.jpg, Prediction :Nora_Danish, confidence : 0.520
+Original label:Nova_Eliza\20.jpg, Prediction :Nora_Berra, confidence : 0.499
+Original label:Nova_Eliza\25.jpg, Prediction :Nonami_Takizawa, confidence : 0.427
+Original label:Nova_Eliza\28.jpg, Prediction :Nora_Salinas, confidence : 0.480
+Original label:ParkSunhee\9.jpg, Prediction :Nonito_Donaire, confidence : 0.390
+Original label:anheejeong\12.jpg, Prediction :moonjaein, confidence : 0.995
+Original label:anheejeong\13.jpg, Prediction :Norbert_Lammert, confidence : 0.736
+Original label:anheejeong\15.jpg, Prediction :Norbert_Blüm, confidence : 0.418
+Original label:anheejeong\19.jpg, Prediction :Nolwenn_Leroy, confidence : 0.494
+Original label:anheejeong\21.jpg, Prediction :moonjaein, confidence : 0.689
+Original label:anheejeong\22.jpg, Prediction :moonjaein, confidence : 0.465
+Original label:ivy\1.jpg, Prediction :jeongryeonwon, confidence : 0.409
+Original label:ivy\10.jpg, Prediction :Nora_Danish, confidence : 0.665
+Original label:ivy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.228
+Original label:ivy\3.jpg, Prediction :jeongryeonwon, confidence : 0.516
+Original label:ivy\4.jpg, Prediction :jeongryeonwon, confidence : 0.562
+Original label:ivy\5.jpg, Prediction :Nora_Danish, confidence : 0.629
+Original label:ivy\6.jpg, Prediction :Nova_Eliza, confidence : 0.616
+Original label:ivy\7.jpg, Prediction :Nora_Salinas, confidence : 0.397
+Original label:ivy\8.jpg, Prediction :Nora_Danish, confidence : 0.470
+Original label:jeongryeonwon\1.jpg, Prediction :Nova_Eliza, confidence : 0.633
+Original label:jeongryeonwon\10.jpg, Prediction :Nonami_Takizawa, confidence : 0.629
+Original label:jeongryeonwon\11.jpg, Prediction :Nova_Eliza, confidence : 0.423
+Original label:jeongryeonwon\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.355
+Original label:jeongryeonwon\4.jpg, Prediction :Nolwenn_Leroy, confidence : 0.476
+Original label:jeonhyoseong\5.jpg, Prediction :Nora_Danish, confidence : 0.934
+Original label:jeonhyoseong\6.jpg, Prediction :jeongryeonwon, confidence : 0.508
+Original label:jeonhyoseong\7.jpg, Prediction :jeongryeonwon, confidence : 0.400
+Original label:jeonhyoseong\8.jpg, Prediction :narsha, confidence : 0.424
+Original label:jeonhyoseong\9.jpg, Prediction :Nova_Eliza, confidence : 0.485
+Original label:kimssok\1.jpg, Prediction :jeongryeonwon, confidence : 0.527
+Original label:kimssok\2.jpg, Prediction :jeongryeonwon, confidence : 0.678
+Original label:kimssok\3.jpg, Prediction :jeongryeonwon, confidence : 0.314
+Original label:kimssok\4.jpg, Prediction :songeunhee, confidence : 0.299
+Original label:kimssok\7.jpg, Prediction :parknare, confidence : 0.346
+Original label:kimssok\8.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.603
+Original label:kimssok\9.jpg, Prediction :jeongryeonwon, confidence : 0.338
+Original label:leejaemyeng\10.jpg, Prediction :moonjaein, confidence : 0.427
+Original label:leejaemyeng\11.jpg, Prediction :anheejeong, confidence : 0.524
+Original label:leejaemyeng\12.jpg, Prediction :anheejeong, confidence : 0.556
+Original label:leejaemyeng\18.jpg, Prediction :moonjaein, confidence : 0.566
+Original label:leejaemyeng\2.jpg, Prediction :Norbert_Blüm, confidence : 0.662
+Original label:leejaemyeng\22.jpg, Prediction :moonjaein, confidence : 0.478
+Original label:leejaemyeng\24.jpg, Prediction :Nora_Salinas, confidence : 0.712
+Original label:leejaemyeng\3.jpg, Prediction :moonjaein, confidence : 0.974
+Original label:leejaemyeng\4.jpg, Prediction :Norbert_Blüm, confidence : 0.577
+Original label:leejaemyeng\9.jpg, Prediction :moonjaein, confidence : 0.506
+Original label:leejeongje\12.jpg, Prediction :anheejeong, confidence : 0.555
+Original label:leejeongje\13.jpg, Prediction :jeongryeonwon, confidence : 0.321
+Original label:leejeongje\14.jpg, Prediction :Nora_Danish, confidence : 0.593
+Original label:leejeongje\2.jpg, Prediction :jeongryeonwon, confidence : 0.494
+Original label:leejeongje\5.jpg, Prediction :Nolito, confidence : 0.655
+Original label:leejeongje\9.jpg, Prediction :songeunhee, confidence : 0.140
+Original label:moonjaein\15.jpg, Prediction :anheejeong, confidence : 0.588
+Original label:moonjaein\21.jpg, Prediction :Norbert_Blüm, confidence : 0.578
+Original label:moonjaein\24.jpg, Prediction :Nolan_Roux, confidence : 0.534
+Original label:moonjaein\8.jpg, Prediction :Nori_Aoki, confidence : 0.309
+Original label:moonjaein\9.jpg, Prediction :leejaemyeng, confidence : 0.505
+Original label:narsha\4.jpg, Prediction :Nolwenn_Leroy, confidence : 0.433
+Original label:narsha\6.jpg, Prediction :Nora_Danish, confidence : 0.405
+Original label:narsha\8.jpg, Prediction :jeongryeonwon, confidence : 0.297
+Original label:narsha\9.jpg, Prediction :Norah_ODonnell, confidence : 0.346
+Original label:parknare\1.jpg, Prediction :Nora_Salinas, confidence : 0.775
+Original label:parknare\2.jpg, Prediction :songeunhee, confidence : 0.299
+Original label:parknare\7.jpg, Prediction :parksohyun, confidence : 0.301
+Original label:parknare\8.jpg, Prediction :Norah_ODonnell, confidence : 0.970
+Original label:parknare\9.jpg, Prediction :parksohyun, confidence : 0.284
+Original label:parksohyun\2.jpg, Prediction :Nova_Eliza, confidence : 0.267
+Original label:parksohyun\3.jpg, Prediction :kimssok, confidence : 0.355
+Original label:parksohyun\6.jpg, Prediction :Nora_Danish, confidence : 0.376
+Original label:parksohyun\8.jpg, Prediction :ParkMinjeong, confidence : 0.550
+Original label:parksohyun\9.jpg, Prediction :Nonami_Takizawa, confidence : 0.836
+Original label:songeunhee\1.jpg, Prediction :Nolwenn_Leroy, confidence : 0.995
+Original label:songeunhee\10.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.430
+Original label:songeunhee\3.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.584
+Original label:songeunhee\4.jpg, Prediction :parksohyun, confidence : 0.418
+Original label:songeunhee\5.jpg, Prediction :kimssok, confidence : 0.299
+Original label:songeunhee\7.jpg, Prediction :Nora_Danish, confidence : 0.296
+Original label:songeunhee\8.jpg, Prediction :Nolwenn_Leroy, confidence : 0.995
+Original label:songeunhee\9.jpg, Prediction :Norah_ODonnell, confidence : 0.422
+Original label:yooseyoon\1.jpg, Prediction :Nova_Eliza, confidence : 0.943
+Original label:yooseyoon\10.jpg, Prediction :leejeongje, confidence : 0.604
+Original label:yooseyoon\11.jpg, Prediction :leejeongje, confidence : 0.773
+Original label:yooseyoon\12.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.363
+Original label:yooseyoon\13.jpg, Prediction :Nolito, confidence : 0.790
+Original label:yooseyoon\3.jpg, Prediction :leejaemyeng, confidence : 0.558
+Original label:yooseyoon\4.jpg, Prediction :parksohyun, confidence : 0.551
+Original label:yooseyoon\5.jpg, Prediction :Nolwenn_Leroy, confidence : 0.623
+Original label:yooseyoon\6.jpg, Prediction :anheejeong, confidence : 0.566
+Original label:yooseyoon\7.jpg, Prediction :Nolwenn_Leroy, confidence : 0.961
+Original label:yooseyoon\8.jpg, Prediction :Nolwenn_Leroy, confidence : 0.483
+Original label:yooseyoon\9.jpg, Prediction :leejeongje, confidence : 0.320
+
+InceptionResNetV2(weights='imagenet', pooling='max',
+                  include_top=False,
+                  input_shape=(224, 224, 3))
+
+    model.add(layers.Dense(512, activation='relu', input_dim=1536))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(labelColunt, activation='softmax'))
+    model.summary()
+
+    model.compile(optimizer=optimizers.RMSprop(lr=2e-4),
+                  loss='categorical_crossentropy',
+                  metrics=['acc'])
+
+    history = model.fit(train_features,
+                        train_labels,
+                        epochs=80,
+                        batch_size=batch_size,
+                        validation_data=(validation_features,validation_labels))
+
+Epoch 80/80
+
+ 100/6816 [..............................] - ETA: 0s - loss: 0.1097 - acc: 1.0000
+ 600/6816 [=>............................] - ETA: 0s - loss: 0.1949 - acc: 0.9450
+1200/6816 [====>.........................] - ETA: 0s - loss: 0.1900 - acc: 0.9400
+1800/6816 [======>.......................] - ETA: 0s - loss: 0.1929 - acc: 0.9439
+2500/6816 [==========>...................] - ETA: 0s - loss: 0.2047 - acc: 0.9400
+3100/6816 [============>.................] - ETA: 0s - loss: 0.2030 - acc: 0.9410
+3800/6816 [===============>..............] - ETA: 0s - loss: 0.2088 - acc: 0.9374
+4300/6816 [=================>............] - ETA: 0s - loss: 0.2091 - acc: 0.9372
+4900/6816 [====================>.........] - ETA: 0s - loss: 0.2073 - acc: 0.9380
+5600/6816 [=======================>......] - ETA: 0s - loss: 0.2048 - acc: 0.9384
+6100/6816 [=========================>....] - ETA: 0s - loss: 0.2019 - acc: 0.9392
+6600/6816 [============================>.] - ETA: 0s - loss: 0.2007 - acc: 0.9400
+6816/6816 [==============================] - 1s 110us/step - loss: 0.2014 - acc: 0.9398 - val_loss: 1.3157 - val_acc: 0.6846
+No of errors = 264/837
+Original label:Noelle_Pikus-Pace\1.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.388
+Original label:Noelle_Pikus-Pace\15.jpg, Prediction :Nora_Berra, confidence : 0.712
+Original label:Noelle_Pikus-Pace\22.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.828
+Original label:Noelle_Pikus-Pace\25.jpg, Prediction :Nora_Salinas, confidence : 0.772
+Original label:Noelle_Pikus-Pace\27.jpg, Prediction :Noelle_Reno, confidence : 0.839
+Original label:Noelle_Pikus-Pace\28.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.806
+Original label:Noelle_Pikus-Pace\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.356
+Original label:Noelle_Pikus-Pace\4.jpg, Prediction :Noelle_Reno, confidence : 0.902
+Original label:Noelle_Reno\13.jpg, Prediction :Nora_Salinas, confidence : 0.444
+Original label:Noelle_Reno\21.jpg, Prediction :Nora_Salinas, confidence : 0.836
+Original label:Nolan_Roux\11.jpg, Prediction :Nonito_Donaire, confidence : 0.473
+Original label:Nolan_Roux\12.jpg, Prediction :Nolito, confidence : 0.501
+Original label:Nolan_Roux\14.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.751
+Original label:Nolan_Roux\18.jpg, Prediction :Nolito, confidence : 0.842
+Original label:Nolan_Roux\19.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.469
+Original label:Nolan_Roux\24.jpg, Prediction :Nolito, confidence : 0.844
+Original label:Nolan_Roux\7.jpg, Prediction :Noelle_Reno, confidence : 0.400
+Original label:Nolan_Roux\9.jpg, Prediction :Nolito, confidence : 0.754
+Original label:Nolito\14.jpg, Prediction :Nonito_Donaire, confidence : 0.814
+Original label:Nolito\15.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.923
+Original label:Nolito\2.jpg, Prediction :Nonito_Donaire, confidence : 0.537
+Original label:Nolito\20.jpg, Prediction :Nouri_al-Maliki, confidence : 0.376
+Original label:Nolito\6.jpg, Prediction :Nonito_Donaire, confidence : 0.568
+Original label:Nolito\7.jpg, Prediction :Nolan_Roux, confidence : 0.999
+Original label:Nolito\8.jpg, Prediction :leejeongje, confidence : 0.498
+Original label:Nolwenn_Leroy\1.jpg, Prediction :Nora_Danish, confidence : 0.524
+Original label:Nolwenn_Leroy\10.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.396
+Original label:Nolwenn_Leroy\13.jpg, Prediction :Nora_Salinas, confidence : 0.543
+Original label:Nolwenn_Leroy\18.jpg, Prediction :Norah_ODonnell, confidence : 0.922
+Original label:Nolwenn_Leroy\19.jpg, Prediction :Norah_ODonnell, confidence : 0.338
+Original label:Nolwenn_Leroy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.756
+Original label:Nolwenn_Leroy\22.jpg, Prediction :Nonito_Donaire, confidence : 0.570
+Original label:Nolwenn_Leroy\23.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.987
+Original label:Nolwenn_Leroy\25.jpg, Prediction :Nora_Danish, confidence : 0.820
+Original label:Nolwenn_Leroy\3.jpg, Prediction :leejaemyeng, confidence : 0.428
+Original label:Nolwenn_Leroy\4.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.984
+Original label:Nolwenn_Leroy\6.jpg, Prediction :Nora_Danish, confidence : 0.708
+Original label:Nomar_Garciaparra\12.jpg, Prediction :Nori_Aoki, confidence : 0.975
+Original label:Nomar_Garciaparra\13.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.507
+Original label:Nomar_Garciaparra\20.jpg, Prediction :Nolito, confidence : 0.624
+Original label:Nomar_Garciaparra\21.jpg, Prediction :Nolito, confidence : 0.422
+Original label:Nomar_Garciaparra\22.jpg, Prediction :Nori_Aoki, confidence : 0.769
+Original label:Nomar_Garciaparra\26.jpg, Prediction :Nonito_Donaire, confidence : 0.962
+Original label:Nomar_Garciaparra\27.jpg, Prediction :leejeongje, confidence : 0.637
+Original label:Nomar_Garciaparra\29.jpg, Prediction :Nori_Aoki, confidence : 0.643
+Original label:Nomar_Garciaparra\6.jpg, Prediction :Nonito_Donaire, confidence : 0.484
+Original label:Nomar_Garciaparra\9.jpg, Prediction :Nova_Eliza, confidence : 0.646
+Original label:Nona_Gaye\11.jpg, Prediction :Nova_Eliza, confidence : 0.330
+Original label:Nona_Gaye\13.jpg, Prediction :Nova_Eliza, confidence : 0.861
+Original label:Nona_Gaye\14.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.716
+Original label:Nona_Gaye\17.jpg, Prediction :Noelle_Reno, confidence : 0.872
+Original label:Nona_Gaye\20.jpg, Prediction :Nolito, confidence : 0.344
+Original label:Nona_Gaye\22.jpg, Prediction :Nora_Salinas, confidence : 0.228
+Original label:Nona_Gaye\23.jpg, Prediction :Noelle_Reno, confidence : 0.990
+Original label:Nona_Gaye\24.jpg, Prediction :Noelle_Reno, confidence : 0.285
+Original label:Nona_Gaye\27.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.783
+Original label:Nona_Gaye\3.jpg, Prediction :Nova_Eliza, confidence : 0.917
+Original label:Nona_Gaye\5.jpg, Prediction :Nora_Danish, confidence : 0.405
+Original label:Nona_Gaye\8.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.302
+Original label:Nonami_Takizawa\16.jpg, Prediction :Nora_Danish, confidence : 0.617
+Original label:Nonami_Takizawa\19.jpg, Prediction :Nora_Danish, confidence : 0.601
+Original label:Nonami_Takizawa\24.jpg, Prediction :Nora_Salinas, confidence : 0.387
+Original label:Nonami_Takizawa\25.jpg, Prediction :Nora_Danish, confidence : 0.740
+Original label:Nonami_Takizawa\27.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.532
+Original label:Nonami_Takizawa\5.jpg, Prediction :Nora_Salinas, confidence : 0.618
+Original label:Nonito_Donaire\10.jpg, Prediction :Nora_Berra, confidence : 0.521
+Original label:Nonito_Donaire\15.jpg, Prediction :Nolan_Roux, confidence : 0.871
+Original label:Nonito_Donaire\16.jpg, Prediction :Nouriel_Roubini, confidence : 0.893
+Original label:Nonito_Donaire\2.jpg, Prediction :anheejeong, confidence : 0.376
+Original label:Nonito_Donaire\25.jpg, Prediction :Nova_Eliza, confidence : 0.900
+Original label:Nonito_Donaire\28.jpg, Prediction :Nolan_Roux, confidence : 0.550
+Original label:Nonito_Donaire\5.jpg, Prediction :Nova_Eliza, confidence : 0.396
+Original label:Nora_Berra\1.jpg, Prediction :leejeongje, confidence : 0.445
+Original label:Nora_Berra\19.jpg, Prediction :Norah_ODonnell, confidence : 0.700
+Original label:Nora_Berra\2.jpg, Prediction :Nora_Salinas, confidence : 0.498
+Original label:Nora_Berra\28.jpg, Prediction :Nora_Salinas, confidence : 0.370
+Original label:Nora_Berra\3.jpg, Prediction :Nora_Salinas, confidence : 0.907
+Original label:Nora_Danish\12.jpg, Prediction :Nova_Eliza, confidence : 0.619
+Original label:Nora_Danish\13.jpg, Prediction :Nolwenn_Leroy, confidence : 0.538
+Original label:Nora_Danish\16.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.374
+Original label:Nora_Danish\21.jpg, Prediction :Nora_Salinas, confidence : 0.970
+Original label:Nora_Danish\22.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.817
+Original label:Nora_Danish\27.jpg, Prediction :Nora_Berra, confidence : 0.524
+Original label:Nora_Danish\6.jpg, Prediction :Nonami_Takizawa, confidence : 0.611
+Original label:Nora_Foss_al-Jabri\1.jpg, Prediction :Nora_Berra, confidence : 0.941
+Original label:Nora_Foss_al-Jabri\11.jpg, Prediction :Nora_Danish, confidence : 0.996
+Original label:Nora_Foss_al-Jabri\12.jpg, Prediction :Nonami_Takizawa, confidence : 0.463
+Original label:Nora_Foss_al-Jabri\13.jpg, Prediction :Norah_ODonnell, confidence : 0.588
+Original label:Nora_Foss_al-Jabri\14.jpg, Prediction :Nora_Salinas, confidence : 0.705
+Original label:Nora_Foss_al-Jabri\15.jpg, Prediction :Norah_ODonnell, confidence : 0.941
+Original label:Nora_Foss_al-Jabri\16.jpg, Prediction :Nora_Salinas, confidence : 0.498
+Original label:Nora_Foss_al-Jabri\17.jpg, Prediction :Nora_Salinas, confidence : 0.557
+Original label:Nora_Foss_al-Jabri\18.jpg, Prediction :Nora_Berra, confidence : 0.984
+Original label:Nora_Foss_al-Jabri\19.jpg, Prediction :Nova_Eliza, confidence : 0.669
+Original label:Nora_Foss_al-Jabri\2.jpg, Prediction :Nora_Salinas, confidence : 0.330
+Original label:Nora_Foss_al-Jabri\23.jpg, Prediction :Noelle_Reno, confidence : 0.992
+Original label:Nora_Foss_al-Jabri\25.jpg, Prediction :Nora_Salinas, confidence : 0.516
+Original label:Nora_Foss_al-Jabri\27.jpg, Prediction :Norah_ODonnell, confidence : 0.548
+Original label:Nora_Foss_al-Jabri\28.jpg, Prediction :Nora_Salinas, confidence : 0.883
+Original label:Nora_Foss_al-Jabri\3.jpg, Prediction :Nora_Berra, confidence : 0.456
+Original label:Nora_Foss_al-Jabri\30.jpg, Prediction :Nora_Danish, confidence : 0.628
+Original label:Nora_Foss_al-Jabri\5.jpg, Prediction :Nora_Salinas, confidence : 0.989
+Original label:Nora_Foss_al-Jabri\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.462
+Original label:Nora_Salinas\10.jpg, Prediction :Norah_ODonnell, confidence : 0.895
+Original label:Nora_Salinas\13.jpg, Prediction :Nora_Danish, confidence : 0.797
+Original label:Nora_Salinas\15.jpg, Prediction :Norah_ODonnell, confidence : 0.382
+Original label:Nora_Salinas\22.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.487
+Original label:Nora_Salinas\23.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.709
+Original label:Nora_Salinas\24.jpg, Prediction :Nora_Danish, confidence : 0.943
+Original label:Nora_Salinas\25.jpg, Prediction :Nolwenn_Leroy, confidence : 0.703
+Original label:Nora_Salinas\7.jpg, Prediction :Nora_Danish, confidence : 0.727
+Original label:Norah_ODonnell\12.jpg, Prediction :Nona_Gaye, confidence : 0.604
+Original label:Norbert_Blüm\10.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.760
+Original label:Norbert_Blüm\19.jpg, Prediction :Norbert_Lammert, confidence : 0.696
+Original label:Norbert_Blüm\20.jpg, Prediction :Norbert_Lammert, confidence : 0.790
+Original label:Norbert_Blüm\23.jpg, Prediction :Norbert_Lammert, confidence : 0.870
+Original label:Norbert_Blüm\27.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.998
+Original label:Norbert_Blüm\4.jpg, Prediction :moonjaein, confidence : 0.763
+Original label:Norbert_Lammert\16.jpg, Prediction :Norbert_Blüm, confidence : 0.552
+Original label:Norbert_Lammert\23.jpg, Prediction :Nouri_al-Maliki, confidence : 0.618
+Original label:Norbert_Lammert\25.jpg, Prediction :moonjaein, confidence : 0.611
+Original label:Norbert_Lammert\26.jpg, Prediction :Norbert_Blüm, confidence : 0.980
+Original label:Nori_Aoki\13.jpg, Prediction :Nomar_Garciaparra, confidence : 0.788
+Original label:Nori_Aoki\15.jpg, Prediction :Nora_Salinas, confidence : 0.713
+Original label:Nori_Aoki\16.jpg, Prediction :Nonito_Donaire, confidence : 0.982
+Original label:Nori_Aoki\19.jpg, Prediction :Nova_Eliza, confidence : 0.995
+Original label:Nori_Aoki\25.jpg, Prediction :Nonito_Donaire, confidence : 0.542
+Original label:Nori_Aoki\4.jpg, Prediction :Nova_Eliza, confidence : 0.719
+Original label:Nouri_al-Maliki\23.jpg, Prediction :Nora_Berra, confidence : 0.501
+Original label:Nouri_al-Maliki\30.jpg, Prediction :Nora_Danish, confidence : 0.651
+Original label:Nouriel_Roubini\14.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.433
+Original label:Nouriel_Roubini\16.jpg, Prediction :Nona_Gaye, confidence : 0.721
+Original label:Nouriel_Roubini\17.jpg, Prediction :Nolan_Roux, confidence : 0.650
+Original label:Nouriel_Roubini\23.jpg, Prediction :Norbert_Lammert, confidence : 0.506
+Original label:Nouriel_Roubini\24.jpg, Prediction :Noelle_Reno, confidence : 0.605
+Original label:Nouriel_Roubini\26.jpg, Prediction :Nonito_Donaire, confidence : 0.825
+Original label:Nouriel_Roubini\28.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.350
+Original label:Nouriel_Roubini\4.jpg, Prediction :Nolan_Roux, confidence : 0.733
+Original label:Nova_Eliza\11.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.666
+Original label:Nova_Eliza\12.jpg, Prediction :Nora_Salinas, confidence : 0.322
+Original label:Nova_Eliza\13.jpg, Prediction :Nora_Salinas, confidence : 0.440
+Original label:Nova_Eliza\16.jpg, Prediction :Nona_Gaye, confidence : 0.819
+Original label:Nova_Eliza\18.jpg, Prediction :Nonito_Donaire, confidence : 0.378
+Original label:Nova_Eliza\20.jpg, Prediction :Nora_Berra, confidence : 0.719
+Original label:Nova_Eliza\25.jpg, Prediction :Nonami_Takizawa, confidence : 0.927
+Original label:Nova_Eliza\26.jpg, Prediction :Nona_Gaye, confidence : 0.542
+Original label:Nova_Eliza\27.jpg, Prediction :Nona_Gaye, confidence : 0.661
+Original label:Nova_Eliza\28.jpg, Prediction :Nora_Salinas, confidence : 0.734
+Original label:Nova_Eliza\6.jpg, Prediction :Nora_Danish, confidence : 0.625
+Original label:ParkSunhee\4.jpg, Prediction :Nora_Berra, confidence : 0.856
+Original label:ParkSunhee\9.jpg, Prediction :Nonito_Donaire, confidence : 0.749
+Original label:anheejeong\12.jpg, Prediction :moonjaein, confidence : 0.981
+Original label:anheejeong\13.jpg, Prediction :Norbert_Lammert, confidence : 0.985
+Original label:anheejeong\15.jpg, Prediction :leejaemyeng, confidence : 0.344
+Original label:anheejeong\16.jpg, Prediction :Nonito_Donaire, confidence : 0.794
+Original label:anheejeong\19.jpg, Prediction :Nori_Aoki, confidence : 0.268
+Original label:anheejeong\20.jpg, Prediction :Norbert_Lammert, confidence : 0.465
+Original label:anheejeong\21.jpg, Prediction :Norbert_Lammert, confidence : 0.263
+Original label:anheejeong\5.jpg, Prediction :moonjaein, confidence : 0.735
+Original label:ivy\10.jpg, Prediction :Nora_Danish, confidence : 0.359
+Original label:ivy\11.jpg, Prediction :Nora_Salinas, confidence : 0.449
+Original label:ivy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.469
+Original label:ivy\3.jpg, Prediction :Nora_Danish, confidence : 0.663
+Original label:ivy\4.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.578
+Original label:ivy\5.jpg, Prediction :Nonito_Donaire, confidence : 0.870
+Original label:ivy\6.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.875
+Original label:ivy\7.jpg, Prediction :Nora_Berra, confidence : 0.551
+Original label:ivy\9.jpg, Prediction :parknare, confidence : 0.351
+Original label:jeongryeonwon\1.jpg, Prediction :Nonami_Takizawa, confidence : 0.384
+Original label:jeongryeonwon\10.jpg, Prediction :Nonami_Takizawa, confidence : 0.503
+Original label:jeongryeonwon\11.jpg, Prediction :Nova_Eliza, confidence : 0.349
+Original label:jeongryeonwon\13.jpg, Prediction :Nonami_Takizawa, confidence : 0.466
+Original label:jeongryeonwon\15.jpg, Prediction :Nora_Salinas, confidence : 0.491
+Original label:jeongryeonwon\2.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.472
+Original label:jeongryeonwon\4.jpg, Prediction :jeonhyoseong, confidence : 0.441
+Original label:jeongryeonwon\5.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.401
+Original label:jeongryeonwon\6.jpg, Prediction :jeonhyoseong, confidence : 0.499
+Original label:jeongryeonwon\9.jpg, Prediction :ivy, confidence : 0.394
+Original label:jeonhyoseong\10.jpg, Prediction :Nolwenn_Leroy, confidence : 0.551
+Original label:jeonhyoseong\11.jpg, Prediction :jeongryeonwon, confidence : 0.789
+Original label:jeonhyoseong\12.jpg, Prediction :ivy, confidence : 0.633
+Original label:jeonhyoseong\4.jpg, Prediction :Nonami_Takizawa, confidence : 0.389
+Original label:jeonhyoseong\5.jpg, Prediction :Nora_Danish, confidence : 0.336
+Original label:jeonhyoseong\6.jpg, Prediction :Nora_Danish, confidence : 0.338
+Original label:jeonhyoseong\7.jpg, Prediction :ivy, confidence : 0.620
+Original label:jeonhyoseong\8.jpg, Prediction :narsha, confidence : 0.752
+Original label:jeonhyoseong\9.jpg, Prediction :Nonami_Takizawa, confidence : 0.440
+Original label:kimssok\1.jpg, Prediction :Nonami_Takizawa, confidence : 0.596
+Original label:kimssok\10.jpg, Prediction :Nora_Danish, confidence : 0.549
+Original label:kimssok\2.jpg, Prediction :songeunhee, confidence : 0.512
+Original label:kimssok\3.jpg, Prediction :parksohyun, confidence : 0.330
+Original label:kimssok\4.jpg, Prediction :jeongryeonwon, confidence : 0.341
+Original label:kimssok\7.jpg, Prediction :parknare, confidence : 0.540
+Original label:kimssok\8.jpg, Prediction :parknare, confidence : 0.378
+Original label:kimssok\9.jpg, Prediction :Nova_Eliza, confidence : 0.788
+Original label:leejaemyeng\10.jpg, Prediction :Norbert_Lammert, confidence : 0.499
+Original label:leejaemyeng\11.jpg, Prediction :moonjaein, confidence : 0.714
+Original label:leejaemyeng\16.jpg, Prediction :moonjaein, confidence : 0.678
+Original label:leejaemyeng\20.jpg, Prediction :Norah_ODonnell, confidence : 0.523
+Original label:leejaemyeng\22.jpg, Prediction :Norbert_Lammert, confidence : 0.576
+Original label:leejaemyeng\24.jpg, Prediction :Nora_Salinas, confidence : 0.584
+Original label:leejaemyeng\3.jpg, Prediction :moonjaein, confidence : 0.733
+Original label:leejaemyeng\4.jpg, Prediction :Nouri_al-Maliki, confidence : 0.594
+Original label:leejaemyeng\5.jpg, Prediction :moonjaein, confidence : 0.356
+Original label:leejaemyeng\9.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.522
+Original label:leejeongje\1.jpg, Prediction :Nora_Danish, confidence : 0.329
+Original label:leejeongje\10.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.463
+Original label:leejeongje\11.jpg, Prediction :Nonito_Donaire, confidence : 0.688
+Original label:leejeongje\12.jpg, Prediction :leejaemyeng, confidence : 0.466
+Original label:leejeongje\13.jpg, Prediction :Nora_Danish, confidence : 0.228
+Original label:leejeongje\14.jpg, Prediction :Nora_Danish, confidence : 0.374
+Original label:leejeongje\3.jpg, Prediction :Nova_Eliza, confidence : 0.757
+Original label:leejeongje\4.jpg, Prediction :Nouriel_Roubini, confidence : 0.339
+Original label:leejeongje\5.jpg, Prediction :Nonito_Donaire, confidence : 0.878
+Original label:leejeongje\8.jpg, Prediction :jeongryeonwon, confidence : 0.439
+Original label:leejeongje\9.jpg, Prediction :Nora_Salinas, confidence : 0.547
+Original label:moonjaein\11.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.249
+Original label:moonjaein\13.jpg, Prediction :Nonito_Donaire, confidence : 0.510
+Original label:moonjaein\14.jpg, Prediction :Norbert_Lammert, confidence : 0.781
+Original label:moonjaein\15.jpg, Prediction :Nora_Berra, confidence : 0.419
+Original label:moonjaein\17.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.624
+Original label:moonjaein\21.jpg, Prediction :Nouriel_Roubini, confidence : 0.520
+Original label:moonjaein\23.jpg, Prediction :leejaemyeng, confidence : 0.467
+Original label:moonjaein\24.jpg, Prediction :Nolan_Roux, confidence : 0.628
+Original label:moonjaein\7.jpg, Prediction :anheejeong, confidence : 0.835
+Original label:narsha\4.jpg, Prediction :Nolwenn_Leroy, confidence : 0.628
+Original label:narsha\5.jpg, Prediction :Nolwenn_Leroy, confidence : 0.408
+Original label:narsha\6.jpg, Prediction :jeongryeonwon, confidence : 0.332
+Original label:narsha\8.jpg, Prediction :ivy, confidence : 0.359
+Original label:narsha\9.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.278
+Original label:parknare\1.jpg, Prediction :Nora_Salinas, confidence : 0.583
+Original label:parknare\2.jpg, Prediction :parksohyun, confidence : 0.391
+Original label:parknare\4.jpg, Prediction :Nora_Danish, confidence : 0.731
+Original label:parknare\7.jpg, Prediction :parksohyun, confidence : 0.841
+Original label:parknare\8.jpg, Prediction :Norah_ODonnell, confidence : 0.952
+Original label:parknare\9.jpg, Prediction :Nolwenn_Leroy, confidence : 0.263
+Original label:parksohyun\2.jpg, Prediction :Nova_Eliza, confidence : 0.696
+Original label:parksohyun\3.jpg, Prediction :narsha, confidence : 0.358
+Original label:parksohyun\4.jpg, Prediction :parknare, confidence : 0.535
+Original label:parksohyun\6.jpg, Prediction :Nonami_Takizawa, confidence : 0.432
+Original label:parksohyun\7.jpg, Prediction :parknare, confidence : 0.580
+Original label:parksohyun\8.jpg, Prediction :ParkMinjeong, confidence : 0.219
+Original label:parksohyun\9.jpg, Prediction :Nonami_Takizawa, confidence : 0.988
+Original label:songeunhee\1.jpg, Prediction :Nolwenn_Leroy, confidence : 0.999
+Original label:songeunhee\10.jpg, Prediction :Nora_Salinas, confidence : 0.666
+Original label:songeunhee\2.jpg, Prediction :Noelle_Reno, confidence : 0.255
+Original label:songeunhee\3.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.995
+Original label:songeunhee\4.jpg, Prediction :parksohyun, confidence : 0.900
+Original label:songeunhee\5.jpg, Prediction :anheejeong, confidence : 0.524
+Original label:songeunhee\7.jpg, Prediction :Norah_ODonnell, confidence : 0.303
+Original label:songeunhee\8.jpg, Prediction :Nolwenn_Leroy, confidence : 0.998
+Original label:songeunhee\9.jpg, Prediction :Norah_ODonnell, confidence : 0.742
+Original label:yooseyoon\1.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.569
+Original label:yooseyoon\10.jpg, Prediction :parknare, confidence : 0.880
+Original label:yooseyoon\11.jpg, Prediction :leejeongje, confidence : 0.517
+Original label:yooseyoon\12.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.996
+Original label:yooseyoon\13.jpg, Prediction :leejaemyeng, confidence : 0.668
+Original label:yooseyoon\3.jpg, Prediction :leejeongje, confidence : 0.361
+Original label:yooseyoon\4.jpg, Prediction :parknare, confidence : 0.194
+Original label:yooseyoon\5.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.650
+Original label:yooseyoon\6.jpg, Prediction :moonjaein, confidence : 0.435
+Original label:yooseyoon\7.jpg, Prediction :Nolwenn_Leroy, confidence : 0.565
+Original label:yooseyoon\8.jpg, Prediction :Nora_Danish, confidence : 0.622
+Original label:yooseyoon\9.jpg, Prediction :Nolwenn_Leroy, confidence : 0.445
+
+
+
+
+
+
+InceptionResNetV2(weights='imagenet', pooling='avg',
+                  include_top=False,
+                  input_shape=(224, 224, 3))
+
+    model.add(layers.Dense(512, activation='relu', input_dim=1536))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(labelColunt, activation='softmax'))
+    model.summary()
+
+    model.compile(optimizer=optimizers.RMSprop(lr=2e-4),
+                  loss='categorical_crossentropy',
+                  metrics=['acc'])
+
+    history = model.fit(train_features,
+                        train_labels,
+                        epochs=200,
+                        batch_size=batch_size,
+                        validation_data=(validation_features,validation_labels))
+
+Epoch 200/200
+
+ 100/6816 [..............................] - ETA: 0s - loss: 0.0425 - acc: 0.9900
+ 700/6816 [==>...........................] - ETA: 0s - loss: 0.0450 - acc: 0.9943
+1300/6816 [====>.........................] - ETA: 0s - loss: 0.0486 - acc: 0.9885
+1900/6816 [=======>......................] - ETA: 0s - loss: 0.0496 - acc: 0.9889
+2500/6816 [==========>...................] - ETA: 0s - loss: 0.0480 - acc: 0.9896
+3100/6816 [============>.................] - ETA: 0s - loss: 0.0497 - acc: 0.9900
+3800/6816 [===============>..............] - ETA: 0s - loss: 0.0492 - acc: 0.9897
+4500/6816 [==================>...........] - ETA: 0s - loss: 0.0520 - acc: 0.9889
+5200/6816 [=====================>........] - ETA: 0s - loss: 0.0513 - acc: 0.9888
+5800/6816 [========================>.....] - ETA: 0s - loss: 0.0498 - acc: 0.9897
+6500/6816 [===========================>..] - ETA: 0s - loss: 0.0501 - acc: 0.9894
+6816/6816 [==============================] - 1s 108us/step - loss: 0.0495 - acc: 0.9897 - val_loss: 0.8181 - val_acc: 0.8088
+No of errors = 160/837
+Original label:Noelle_Pikus-Pace\1.jpg, Prediction :Nolan_Roux, confidence : 0.810
+Original label:Noelle_Pikus-Pace\15.jpg, Prediction :Nouriel_Roubini, confidence : 0.887
+Original label:Noelle_Pikus-Pace\22.jpg, Prediction :Nora_Danish, confidence : 0.316
+Original label:Noelle_Pikus-Pace\25.jpg, Prediction :Nora_Salinas, confidence : 0.825
+Original label:Noelle_Pikus-Pace\27.jpg, Prediction :Nolan_Roux, confidence : 0.934
+Original label:Noelle_Pikus-Pace\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.970
+Original label:Noelle_Pikus-Pace\9.jpg, Prediction :Nora_Berra, confidence : 0.560
+Original label:Noelle_Reno\21.jpg, Prediction :Nora_Danish, confidence : 0.455
+Original label:Noelle_Reno\25.jpg, Prediction :Norah_ODonnell, confidence : 0.677
+Original label:Nolan_Roux\1.jpg, Prediction :Nolito, confidence : 0.917
+Original label:Nolan_Roux\11.jpg, Prediction :Nouriel_Roubini, confidence : 0.665
+Original label:Nolan_Roux\12.jpg, Prediction :Nonito_Donaire, confidence : 0.485
+Original label:Nolan_Roux\14.jpg, Prediction :Nora_Salinas, confidence : 0.977
+Original label:Nolan_Roux\18.jpg, Prediction :Nolito, confidence : 0.994
+Original label:Nolan_Roux\19.jpg, Prediction :Norah_ODonnell, confidence : 0.466
+Original label:Nolan_Roux\20.jpg, Prediction :Nolito, confidence : 0.961
+Original label:Nolan_Roux\24.jpg, Prediction :Nolito, confidence : 0.764
+Original label:Nolan_Roux\6.jpg, Prediction :Nolito, confidence : 0.961
+Original label:Nolan_Roux\9.jpg, Prediction :Nolito, confidence : 0.998
+Original label:Nolito\15.jpg, Prediction :Nolan_Roux, confidence : 0.683
+Original label:Nolito\17.jpg, Prediction :Nonito_Donaire, confidence : 0.797
+Original label:Nolito\22.jpg, Prediction :Norbert_Lammert, confidence : 0.534
+Original label:Nolwenn_Leroy\1.jpg, Prediction :Nora_Danish, confidence : 0.694
+Original label:Nolwenn_Leroy\13.jpg, Prediction :Nora_Salinas, confidence : 0.923
+Original label:Nolwenn_Leroy\18.jpg, Prediction :Norah_ODonnell, confidence : 0.824
+Original label:Nolwenn_Leroy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.869
+Original label:Nolwenn_Leroy\4.jpg, Prediction :Nonito_Donaire, confidence : 0.349
+Original label:Nomar_Garciaparra\12.jpg, Prediction :Nori_Aoki, confidence : 0.715
+Original label:Nomar_Garciaparra\13.jpg, Prediction :Nolwenn_Leroy, confidence : 0.609
+Original label:Nomar_Garciaparra\20.jpg, Prediction :Nolan_Roux, confidence : 0.512
+Original label:Nomar_Garciaparra\22.jpg, Prediction :Nolwenn_Leroy, confidence : 0.675
+Original label:Nomar_Garciaparra\26.jpg, Prediction :Nonito_Donaire, confidence : 0.703
+Original label:Nomar_Garciaparra\9.jpg, Prediction :Nori_Aoki, confidence : 0.731
+Original label:Nona_Gaye\11.jpg, Prediction :Nova_Eliza, confidence : 0.677
+Original label:Nona_Gaye\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.883
+Original label:Nona_Gaye\27.jpg, Prediction :Noelle_Reno, confidence : 0.512
+Original label:Nona_Gaye\3.jpg, Prediction :Nova_Eliza, confidence : 0.987
+Original label:Nonami_Takizawa\16.jpg, Prediction :Nora_Danish, confidence : 0.953
+Original label:Nonami_Takizawa\4.jpg, Prediction :Nora_Danish, confidence : 0.544
+Original label:Nonito_Donaire\11.jpg, Prediction :Nolito, confidence : 0.960
+Original label:Nonito_Donaire\15.jpg, Prediction :Nolan_Roux, confidence : 0.981
+Original label:Nonito_Donaire\2.jpg, Prediction :leejeongje, confidence : 0.382
+Original label:Nonito_Donaire\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.972
+Original label:Nonito_Donaire\25.jpg, Prediction :Nova_Eliza, confidence : 0.972
+Original label:Nonito_Donaire\28.jpg, Prediction :Nolan_Roux, confidence : 0.763
+Original label:Nonito_Donaire\3.jpg, Prediction :Nolan_Roux, confidence : 0.737
+Original label:Nora_Berra\1.jpg, Prediction :leejeongje, confidence : 0.363
+Original label:Nora_Berra\28.jpg, Prediction :Nova_Eliza, confidence : 0.306
+Original label:Nora_Berra\3.jpg, Prediction :Nora_Salinas, confidence : 0.728
+Original label:Nora_Berra\30.jpg, Prediction :Nora_Danish, confidence : 0.622
+Original label:Nora_Berra\5.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.450
+Original label:Nora_Berra\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.510
+Original label:Nora_Danish\12.jpg, Prediction :Nova_Eliza, confidence : 0.722
+Original label:Nora_Danish\16.jpg, Prediction :Nova_Eliza, confidence : 0.704
+Original label:Nora_Foss_al-Jabri\10.jpg, Prediction :Nora_Berra, confidence : 0.532
+Original label:Nora_Foss_al-Jabri\11.jpg, Prediction :Nora_Danish, confidence : 0.767
+Original label:Nora_Foss_al-Jabri\12.jpg, Prediction :Nonami_Takizawa, confidence : 0.797
+Original label:Nora_Foss_al-Jabri\13.jpg, Prediction :Noelle_Reno, confidence : 0.652
+Original label:Nora_Foss_al-Jabri\15.jpg, Prediction :Nora_Berra, confidence : 0.916
+Original label:Nora_Foss_al-Jabri\16.jpg, Prediction :Nora_Salinas, confidence : 0.998
+Original label:Nora_Foss_al-Jabri\18.jpg, Prediction :Nora_Salinas, confidence : 0.433
+Original label:Nora_Foss_al-Jabri\19.jpg, Prediction :Nova_Eliza, confidence : 0.708
+Original label:Nora_Foss_al-Jabri\21.jpg, Prediction :Nora_Danish, confidence : 0.844
+Original label:Nora_Foss_al-Jabri\23.jpg, Prediction :Noelle_Reno, confidence : 0.999
+Original label:Nora_Foss_al-Jabri\27.jpg, Prediction :Nora_Salinas, confidence : 0.652
+Original label:Nora_Foss_al-Jabri\28.jpg, Prediction :Nora_Salinas, confidence : 0.859
+Original label:Nora_Foss_al-Jabri\3.jpg, Prediction :Nora_Berra, confidence : 0.908
+Original label:Nora_Foss_al-Jabri\30.jpg, Prediction :Noelle_Reno, confidence : 0.908
+Original label:Nora_Foss_al-Jabri\4.jpg, Prediction :Nora_Danish, confidence : 0.661
+Original label:Nora_Foss_al-Jabri\5.jpg, Prediction :Nora_Salinas, confidence : 0.940
+Original label:Nora_Foss_al-Jabri\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.716
+Original label:Nora_Salinas\10.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.436
+Original label:Nora_Salinas\13.jpg, Prediction :Nora_Danish, confidence : 0.972
+Original label:Nora_Salinas\15.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.521
+Original label:Nora_Salinas\24.jpg, Prediction :Nora_Danish, confidence : 0.847
+Original label:Nora_Salinas\25.jpg, Prediction :Nora_Danish, confidence : 0.872
+Original label:Nora_Salinas\7.jpg, Prediction :Nora_Danish, confidence : 0.977
+Original label:Norbert_Blüm\10.jpg, Prediction :leejaemyeng, confidence : 0.553
+Original label:Norbert_Blüm\19.jpg, Prediction :Norbert_Lammert, confidence : 0.949
+Original label:Norbert_Blüm\23.jpg, Prediction :Norbert_Lammert, confidence : 0.505
+Original label:Norbert_Blüm\27.jpg, Prediction :Norbert_Lammert, confidence : 0.965
+Original label:Norbert_Blüm\7.jpg, Prediction :Norbert_Lammert, confidence : 0.580
+Original label:Norbert_Lammert\16.jpg, Prediction :Norbert_Blüm, confidence : 0.951
+Original label:Norbert_Lammert\23.jpg, Prediction :Nouri_al-Maliki, confidence : 0.633
+Original label:Norbert_Lammert\25.jpg, Prediction :moonjaein, confidence : 0.954
+Original label:Norbert_Lammert\26.jpg, Prediction :Norbert_Blüm, confidence : 0.987
+Original label:Norbert_Lammert\27.jpg, Prediction :Nouriel_Roubini, confidence : 0.602
+Original label:Nori_Aoki\13.jpg, Prediction :Nomar_Garciaparra, confidence : 0.983
+Original label:Nori_Aoki\15.jpg, Prediction :Nomar_Garciaparra, confidence : 0.990
+Original label:Nouriel_Roubini\17.jpg, Prediction :Nolan_Roux, confidence : 0.976
+Original label:Nouriel_Roubini\24.jpg, Prediction :Noelle_Reno, confidence : 0.831
+Original label:Nouriel_Roubini\26.jpg, Prediction :Nonito_Donaire, confidence : 0.940
+Original label:ParkMinjeong\15.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.607
+Original label:anheejeong\12.jpg, Prediction :moonjaein, confidence : 0.999
+Original label:anheejeong\13.jpg, Prediction :Norbert_Lammert, confidence : 0.720
+Original label:anheejeong\19.jpg, Prediction :Nolwenn_Leroy, confidence : 0.478
+Original label:anheejeong\21.jpg, Prediction :moonjaein, confidence : 0.818
+Original label:anheejeong\9.jpg, Prediction :Nomar_Garciaparra, confidence : 0.647
+Original label:ivy\1.jpg, Prediction :Nora_Danish, confidence : 0.573
+Original label:ivy\10.jpg, Prediction :kimssok, confidence : 0.417
+Original label:ivy\4.jpg, Prediction :jeongryeonwon, confidence : 0.689
+Original label:ivy\5.jpg, Prediction :Nora_Danish, confidence : 0.467
+Original label:ivy\6.jpg, Prediction :Nova_Eliza, confidence : 0.886
+Original label:ivy\7.jpg, Prediction :Nora_Salinas, confidence : 0.717
+Original label:ivy\8.jpg, Prediction :Nora_Danish, confidence : 0.448
+Original label:jeongryeonwon\1.jpg, Prediction :Nova_Eliza, confidence : 0.963
+Original label:jeongryeonwon\10.jpg, Prediction :Nonami_Takizawa, confidence : 0.564
+Original label:jeongryeonwon\11.jpg, Prediction :Nova_Eliza, confidence : 0.519
+Original label:jeongryeonwon\15.jpg, Prediction :Nora_Danish, confidence : 0.525
+Original label:jeonhyoseong\12.jpg, Prediction :ivy, confidence : 0.634
+Original label:jeonhyoseong\3.jpg, Prediction :jeongryeonwon, confidence : 0.543
+Original label:jeonhyoseong\5.jpg, Prediction :Nora_Danish, confidence : 0.998
+Original label:jeonhyoseong\6.jpg, Prediction :jeongryeonwon, confidence : 0.735
+Original label:jeonhyoseong\7.jpg, Prediction :jeongryeonwon, confidence : 0.525
+Original label:jeonhyoseong\9.jpg, Prediction :Nora_Salinas, confidence : 0.769
+Original label:kimssok\1.jpg, Prediction :jeongryeonwon, confidence : 0.757
+Original label:leejaemyeng\10.jpg, Prediction :moonjaein, confidence : 0.743
+Original label:leejaemyeng\15.jpg, Prediction :Nolwenn_Leroy, confidence : 0.647
+Original label:leejaemyeng\24.jpg, Prediction :Nora_Salinas, confidence : 0.994
+Original label:leejaemyeng\3.jpg, Prediction :moonjaein, confidence : 0.947
+Original label:leejeongje\14.jpg, Prediction :Nolwenn_Leroy, confidence : 0.433
+Original label:leejeongje\5.jpg, Prediction :Nolito, confidence : 0.979
+Original label:leejeongje\8.jpg, Prediction :jeongryeonwon, confidence : 0.846
+Original label:leejeongje\9.jpg, Prediction :yooseyoon, confidence : 0.960
+Original label:moonjaein\11.jpg, Prediction :Nolito, confidence : 0.297
+Original label:moonjaein\15.jpg, Prediction :anheejeong, confidence : 0.883
+Original label:moonjaein\21.jpg, Prediction :Norbert_Lammert, confidence : 0.485
+Original label:moonjaein\23.jpg, Prediction :Nouriel_Roubini, confidence : 0.854
+Original label:moonjaein\24.jpg, Prediction :Nolan_Roux, confidence : 0.964
+Original label:moonjaein\4.jpg, Prediction :leejaemyeng, confidence : 0.676
+Original label:moonjaein\7.jpg, Prediction :anheejeong, confidence : 0.564
+Original label:moonjaein\8.jpg, Prediction :Nori_Aoki, confidence : 0.839
+Original label:moonjaein\9.jpg, Prediction :leejaemyeng, confidence : 0.964
+Original label:narsha\6.jpg, Prediction :Nora_Danish, confidence : 0.969
+Original label:narsha\8.jpg, Prediction :jeongryeonwon, confidence : 0.462
+Original label:narsha\9.jpg, Prediction :Norah_ODonnell, confidence : 0.593
+Original label:parknare\1.jpg, Prediction :Nora_Salinas, confidence : 0.910
+Original label:parknare\7.jpg, Prediction :parksohyun, confidence : 0.389
+Original label:parknare\8.jpg, Prediction :Norah_ODonnell, confidence : 0.995
+Original label:parknare\9.jpg, Prediction :parksohyun, confidence : 0.643
+Original label:parksohyun\8.jpg, Prediction :ParkMinjeong, confidence : 0.945
+Original label:parksohyun\9.jpg, Prediction :Nonami_Takizawa, confidence : 0.938
+Original label:songeunhee\1.jpg, Prediction :Nolwenn_Leroy, confidence : 1.000
+Original label:songeunhee\10.jpg, Prediction :Nora_Salinas, confidence : 0.929
+Original label:songeunhee\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.993
+Original label:songeunhee\4.jpg, Prediction :parksohyun, confidence : 0.824
+Original label:songeunhee\5.jpg, Prediction :yooseyoon, confidence : 0.347
+Original label:songeunhee\7.jpg, Prediction :parknare, confidence : 0.468
+Original label:songeunhee\8.jpg, Prediction :Nolwenn_Leroy, confidence : 0.995
+Original label:songeunhee\9.jpg, Prediction :Norah_ODonnell, confidence : 0.602
+Original label:yooseyoon\1.jpg, Prediction :Nova_Eliza, confidence : 0.993
+Original label:yooseyoon\10.jpg, Prediction :leejeongje, confidence : 0.577
+Original label:yooseyoon\11.jpg, Prediction :leejeongje, confidence : 0.737
+Original label:yooseyoon\12.jpg, Prediction :Nova_Eliza, confidence : 0.845
+Original label:yooseyoon\13.jpg, Prediction :Nolito, confidence : 0.969
+Original label:yooseyoon\3.jpg, Prediction :leejaemyeng, confidence : 0.436
+Original label:yooseyoon\4.jpg, Prediction :parksohyun, confidence : 0.700
+Original label:yooseyoon\5.jpg, Prediction :leejeongje, confidence : 0.472
+Original label:yooseyoon\6.jpg, Prediction :anheejeong, confidence : 0.988
+Original label:yooseyoon\7.jpg, Prediction :Nolwenn_Leroy, confidence : 0.989
+
+
+
+
+
+InceptionResNetV2(weights='imagenet', pooling='avg',
+                  include_top=False,
+                  input_shape=(224, 224, 3))
+
+    model.add(layers.Dense(1024, activation='relu', input_dim=1536))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(labelColunt, activation='softmax'))
+    model.summary()
+
+    model.compile(optimizer=optimizers.RMSprop(lr=2e-4),
+                  loss='categorical_crossentropy',
+                  metrics=['acc'])
+
+    history = model.fit(train_features,
+                        train_labels,
+                        epochs=200,
+                        batch_size=batch_size,
+                        validation_data=(validation_features,validation_labels))
+
+
+Epoch 200/200
+
+ 100/6816 [..............................] - ETA: 1s - loss: 0.0242 - acc: 0.9900
+ 500/6816 [=>............................] - ETA: 0s - loss: 0.0143 - acc: 0.9980
+ 900/6816 [==>...........................] - ETA: 0s - loss: 0.0134 - acc: 0.9989
+1500/6816 [=====>........................] - ETA: 0s - loss: 0.0159 - acc: 0.9987
+2000/6816 [=======>......................] - ETA: 0s - loss: 0.0191 - acc: 0.9975
+2500/6816 [==========>...................] - ETA: 0s - loss: 0.0191 - acc: 0.9980
+3000/6816 [============>.................] - ETA: 0s - loss: 0.0223 - acc: 0.9970
+3600/6816 [==============>...............] - ETA: 0s - loss: 0.0217 - acc: 0.9972
+4200/6816 [=================>............] - ETA: 0s - loss: 0.0213 - acc: 0.9971
+4800/6816 [====================>.........] - ETA: 0s - loss: 0.0213 - acc: 0.9967
+5300/6816 [======================>.......] - ETA: 0s - loss: 0.0220 - acc: 0.9964
+5800/6816 [========================>.....] - ETA: 0s - loss: 0.0218 - acc: 0.9962
+6300/6816 [==========================>...] - ETA: 0s - loss: 0.0216 - acc: 0.9962
+6816/6816 [==============================] - 1s 130us/step - loss: 0.0209 - acc: 0.9963 - val_loss: 0.8846 - val_acc: 0.8184
+No of errors = 152/837
+Original label:Noelle_Pikus-Pace\1.jpg, Prediction :Nolan_Roux, confidence : 0.801
+Original label:Noelle_Pikus-Pace\15.jpg, Prediction :Nouriel_Roubini, confidence : 0.980
+Original label:Noelle_Pikus-Pace\22.jpg, Prediction :Nouriel_Roubini, confidence : 0.546
+Original label:Noelle_Pikus-Pace\25.jpg, Prediction :Nora_Salinas, confidence : 0.767
+Original label:Noelle_Pikus-Pace\27.jpg, Prediction :Nolan_Roux, confidence : 0.498
+Original label:Noelle_Pikus-Pace\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.984
+Original label:Noelle_Reno\25.jpg, Prediction :Norah_ODonnell, confidence : 0.986
+Original label:Nolan_Roux\11.jpg, Prediction :Nouriel_Roubini, confidence : 0.476
+Original label:Nolan_Roux\12.jpg, Prediction :Nonito_Donaire, confidence : 0.674
+Original label:Nolan_Roux\14.jpg, Prediction :Nora_Salinas, confidence : 0.891
+Original label:Nolan_Roux\18.jpg, Prediction :Nolito, confidence : 0.998
+Original label:Nolan_Roux\19.jpg, Prediction :Nora_Danish, confidence : 0.969
+Original label:Nolan_Roux\20.jpg, Prediction :Nolito, confidence : 1.000
+Original label:Nolan_Roux\24.jpg, Prediction :Nolito, confidence : 0.916
+Original label:Nolan_Roux\9.jpg, Prediction :Nolito, confidence : 0.996
+Original label:Nolito\15.jpg, Prediction :Nolan_Roux, confidence : 0.794
+Original label:Nolito\17.jpg, Prediction :Nonito_Donaire, confidence : 0.964
+Original label:Nolito\21.jpg, Prediction :Nolan_Roux, confidence : 0.925
+Original label:Nolito\22.jpg, Prediction :Nomar_Garciaparra, confidence : 0.367
+Original label:Nolito\6.jpg, Prediction :Nonito_Donaire, confidence : 0.740
+Original label:Nolito\8.jpg, Prediction :Nonito_Donaire, confidence : 0.328
+Original label:Nolwenn_Leroy\1.jpg, Prediction :Nora_Danish, confidence : 0.693
+Original label:Nolwenn_Leroy\13.jpg, Prediction :Nora_Salinas, confidence : 0.992
+Original label:Nolwenn_Leroy\18.jpg, Prediction :Norah_ODonnell, confidence : 0.651
+Original label:Nolwenn_Leroy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.953
+Original label:Nolwenn_Leroy\3.jpg, Prediction :kimssok, confidence : 0.740
+Original label:Nolwenn_Leroy\4.jpg, Prediction :Nonito_Donaire, confidence : 0.479
+Original label:Nomar_Garciaparra\12.jpg, Prediction :Nori_Aoki, confidence : 0.807
+Original label:Nomar_Garciaparra\13.jpg, Prediction :Nolwenn_Leroy, confidence : 0.576
+Original label:Nomar_Garciaparra\26.jpg, Prediction :Nonito_Donaire, confidence : 0.915
+Original label:Nomar_Garciaparra\27.jpg, Prediction :leejeongje, confidence : 0.656
+Original label:Nona_Gaye\11.jpg, Prediction :Nova_Eliza, confidence : 0.663
+Original label:Nona_Gaye\13.jpg, Prediction :Nova_Eliza, confidence : 0.985
+Original label:Nona_Gaye\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.812
+Original label:Nona_Gaye\22.jpg, Prediction :Norah_ODonnell, confidence : 0.482
+Original label:Nona_Gaye\27.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.816
+Original label:Nona_Gaye\3.jpg, Prediction :Nova_Eliza, confidence : 0.986
+Original label:Nonami_Takizawa\16.jpg, Prediction :Nora_Danish, confidence : 0.994
+Original label:Nonito_Donaire\15.jpg, Prediction :Nolan_Roux, confidence : 0.980
+Original label:Nonito_Donaire\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.930
+Original label:Nonito_Donaire\25.jpg, Prediction :Nova_Eliza, confidence : 0.986
+Original label:Nonito_Donaire\28.jpg, Prediction :Nolan_Roux, confidence : 0.592
+Original label:Nonito_Donaire\3.jpg, Prediction :Nolan_Roux, confidence : 0.685
+Original label:Nora_Berra\1.jpg, Prediction :leejeongje, confidence : 0.801
+Original label:Nora_Berra\3.jpg, Prediction :Nora_Salinas, confidence : 0.593
+Original label:Nora_Berra\30.jpg, Prediction :Nora_Danish, confidence : 0.382
+Original label:Nora_Berra\5.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.687
+Original label:Nora_Berra\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.930
+Original label:Nora_Danish\16.jpg, Prediction :Nova_Eliza, confidence : 0.589
+Original label:Nora_Foss_al-Jabri\10.jpg, Prediction :Nora_Berra, confidence : 0.635
+Original label:Nora_Foss_al-Jabri\12.jpg, Prediction :Nonami_Takizawa, confidence : 0.957
+Original label:Nora_Foss_al-Jabri\13.jpg, Prediction :Norah_ODonnell, confidence : 0.744
+Original label:Nora_Foss_al-Jabri\15.jpg, Prediction :Nora_Berra, confidence : 0.734
+Original label:Nora_Foss_al-Jabri\16.jpg, Prediction :Nora_Salinas, confidence : 0.997
+Original label:Nora_Foss_al-Jabri\18.jpg, Prediction :Nora_Berra, confidence : 0.643
+Original label:Nora_Foss_al-Jabri\19.jpg, Prediction :Nova_Eliza, confidence : 0.655
+Original label:Nora_Foss_al-Jabri\21.jpg, Prediction :Nora_Danish, confidence : 0.877
+Original label:Nora_Foss_al-Jabri\23.jpg, Prediction :Noelle_Reno, confidence : 1.000
+Original label:Nora_Foss_al-Jabri\25.jpg, Prediction :Nonami_Takizawa, confidence : 0.499
+Original label:Nora_Foss_al-Jabri\27.jpg, Prediction :Norah_ODonnell, confidence : 0.340
+Original label:Nora_Foss_al-Jabri\28.jpg, Prediction :Nora_Salinas, confidence : 0.865
+Original label:Nora_Foss_al-Jabri\29.jpg, Prediction :Nora_Berra, confidence : 0.592
+Original label:Nora_Foss_al-Jabri\3.jpg, Prediction :Nora_Berra, confidence : 0.920
+Original label:Nora_Foss_al-Jabri\30.jpg, Prediction :Noelle_Reno, confidence : 0.882
+Original label:Nora_Foss_al-Jabri\5.jpg, Prediction :Nora_Salinas, confidence : 0.953
+Original label:Nora_Foss_al-Jabri\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.997
+Original label:Nora_Salinas\10.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.905
+Original label:Nora_Salinas\13.jpg, Prediction :Nora_Danish, confidence : 0.961
+Original label:Nora_Salinas\15.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.878
+Original label:Nora_Salinas\24.jpg, Prediction :Nora_Danish, confidence : 0.846
+Original label:Nora_Salinas\25.jpg, Prediction :Nolwenn_Leroy, confidence : 0.502
+Original label:Nora_Salinas\7.jpg, Prediction :Nora_Danish, confidence : 0.966
+Original label:Norbert_Blüm\19.jpg, Prediction :Norbert_Lammert, confidence : 0.837
+Original label:Norbert_Blüm\23.jpg, Prediction :moonjaein, confidence : 0.420
+Original label:Norbert_Blüm\27.jpg, Prediction :Norbert_Lammert, confidence : 0.847
+Original label:Norbert_Blüm\4.jpg, Prediction :moonjaein, confidence : 0.684
+Original label:Norbert_Lammert\16.jpg, Prediction :Norbert_Blüm, confidence : 0.948
+Original label:Norbert_Lammert\25.jpg, Prediction :moonjaein, confidence : 0.547
+Original label:Norbert_Lammert\26.jpg, Prediction :Norbert_Blüm, confidence : 0.998
+Original label:Norbert_Lammert\27.jpg, Prediction :Nouriel_Roubini, confidence : 0.600
+Original label:Nori_Aoki\13.jpg, Prediction :Nomar_Garciaparra, confidence : 0.977
+Original label:Nori_Aoki\15.jpg, Prediction :Nomar_Garciaparra, confidence : 0.981
+Original label:Nouriel_Roubini\17.jpg, Prediction :Nolan_Roux, confidence : 0.905
+Original label:Nouriel_Roubini\24.jpg, Prediction :Noelle_Reno, confidence : 0.629
+Original label:Nouriel_Roubini\26.jpg, Prediction :Nonito_Donaire, confidence : 0.898
+Original label:Nova_Eliza\11.jpg, Prediction :Nora_Danish, confidence : 0.708
+Original label:ParkMinjeong\15.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.808
+Original label:ParkMinjeong\20.jpg, Prediction :ParkSunhee, confidence : 0.519
+Original label:ParkSunhee\9.jpg, Prediction :Nonito_Donaire, confidence : 0.871
+Original label:anheejeong\12.jpg, Prediction :moonjaein, confidence : 1.000
+Original label:anheejeong\13.jpg, Prediction :Norbert_Lammert, confidence : 0.854
+Original label:anheejeong\19.jpg, Prediction :Nori_Aoki, confidence : 0.538
+Original label:anheejeong\21.jpg, Prediction :moonjaein, confidence : 0.962
+Original label:ivy\10.jpg, Prediction :kimssok, confidence : 0.858
+Original label:ivy\4.jpg, Prediction :jeongryeonwon, confidence : 0.302
+Original label:ivy\5.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.957
+Original label:ivy\6.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.612
+Original label:ivy\7.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.580
+Original label:jeongryeonwon\1.jpg, Prediction :Nova_Eliza, confidence : 0.951
+Original label:jeongryeonwon\10.jpg, Prediction :Nonami_Takizawa, confidence : 0.794
+Original label:jeongryeonwon\11.jpg, Prediction :Nolwenn_Leroy, confidence : 0.482
+Original label:jeongryeonwon\4.jpg, Prediction :ivy, confidence : 0.517
+Original label:jeonhyoseong\12.jpg, Prediction :ivy, confidence : 0.782
+Original label:jeonhyoseong\5.jpg, Prediction :Nora_Danish, confidence : 1.000
+Original label:jeonhyoseong\6.jpg, Prediction :jeongryeonwon, confidence : 0.723
+Original label:jeonhyoseong\7.jpg, Prediction :ivy, confidence : 0.498
+Original label:jeonhyoseong\9.jpg, Prediction :Nora_Salinas, confidence : 0.900
+Original label:kimssok\1.jpg, Prediction :jeongryeonwon, confidence : 0.534
+Original label:leejaemyeng\11.jpg, Prediction :moonjaein, confidence : 0.483
+Original label:leejaemyeng\2.jpg, Prediction :Norbert_Blüm, confidence : 0.785
+Original label:leejaemyeng\24.jpg, Prediction :Nora_Salinas, confidence : 0.997
+Original label:leejaemyeng\3.jpg, Prediction :moonjaein, confidence : 0.998
+Original label:leejeongje\11.jpg, Prediction :Nonito_Donaire, confidence : 0.562
+Original label:leejeongje\14.jpg, Prediction :Nolwenn_Leroy, confidence : 0.835
+Original label:leejeongje\5.jpg, Prediction :Nolito, confidence : 0.994
+Original label:leejeongje\8.jpg, Prediction :jeongryeonwon, confidence : 0.578
+Original label:leejeongje\9.jpg, Prediction :yooseyoon, confidence : 0.597
+Original label:moonjaein\21.jpg, Prediction :Norbert_Blüm, confidence : 0.728
+Original label:moonjaein\23.jpg, Prediction :Nouriel_Roubini, confidence : 0.852
+Original label:moonjaein\24.jpg, Prediction :Nolan_Roux, confidence : 0.994
+Original label:moonjaein\4.jpg, Prediction :leejaemyeng, confidence : 0.707
+Original label:moonjaein\9.jpg, Prediction :leejaemyeng, confidence : 0.910
+Original label:narsha\6.jpg, Prediction :Nora_Danish, confidence : 0.980
+Original label:narsha\8.jpg, Prediction :jeongryeonwon, confidence : 0.376
+Original label:narsha\9.jpg, Prediction :Norah_ODonnell, confidence : 0.746
+Original label:parknare\1.jpg, Prediction :Nora_Salinas, confidence : 0.987
+Original label:parknare\2.jpg, Prediction :songeunhee, confidence : 0.686
+Original label:parknare\7.jpg, Prediction :parksohyun, confidence : 0.675
+Original label:parknare\8.jpg, Prediction :Norah_ODonnell, confidence : 0.999
+Original label:parksohyun\3.jpg, Prediction :kimssok, confidence : 0.805
+Original label:parksohyun\5.jpg, Prediction :parknare, confidence : 0.508
+Original label:parksohyun\6.jpg, Prediction :kimssok, confidence : 0.719
+Original label:parksohyun\8.jpg, Prediction :ParkMinjeong, confidence : 0.961
+Original label:parksohyun\9.jpg, Prediction :Nonami_Takizawa, confidence : 0.899
+Original label:songeunhee\1.jpg, Prediction :Nolwenn_Leroy, confidence : 1.000
+Original label:songeunhee\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.833
+Original label:songeunhee\4.jpg, Prediction :parksohyun, confidence : 0.456
+Original label:songeunhee\5.jpg, Prediction :kimssok, confidence : 0.810
+Original label:songeunhee\8.jpg, Prediction :Nolwenn_Leroy, confidence : 0.999
+Original label:songeunhee\9.jpg, Prediction :Norah_ODonnell, confidence : 0.864
+Original label:yooseyoon\1.jpg, Prediction :Nova_Eliza, confidence : 0.918
+Original label:yooseyoon\10.jpg, Prediction :leejeongje, confidence : 0.991
+Original label:yooseyoon\11.jpg, Prediction :leejeongje, confidence : 0.953
+Original label:yooseyoon\12.jpg, Prediction :Nova_Eliza, confidence : 0.968
+Original label:yooseyoon\13.jpg, Prediction :Norah_ODonnell, confidence : 0.993
+Original label:yooseyoon\3.jpg, Prediction :leejaemyeng, confidence : 0.764
+Original label:yooseyoon\4.jpg, Prediction :parksohyun, confidence : 0.922
+Original label:yooseyoon\5.jpg, Prediction :leejeongje, confidence : 0.582
+Original label:yooseyoon\6.jpg, Prediction :anheejeong, confidence : 0.903
+Original label:yooseyoon\7.jpg, Prediction :Nolwenn_Leroy, confidence : 0.994
+Original label:yooseyoon\8.jpg, Prediction :songeunhee, confidence : 0.542
+Original label:yooseyoon\9.jpg, Prediction :leejeongje, confidence : 0.964
+
+
+
+
+
+InceptionResNetV2(weights='imagenet', include_top=False,
+                  input_shape=(224, 224, 3))
+
+    model.add(layers.Dense(1024, activation='relu', input_dim=5*5*1536))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(labelColunt, activation='softmax'))
+
+    model.compile(optimizer='SGD',
+                  loss='categorical_crossentropy',
+                  metrics=['acc'])
+
+    history = model.fit(train_features,
+                        train_labels,
+                        epochs=80,
+                        batch_size=batch_size,
+                        validation_data=(validation_features,validation_labels))
+
+Epoch 80/80
+
+ 100/6816 [..............................] - ETA: 7s - loss: 0.0177 - acc: 1.0000
+ 200/6816 [..............................] - ETA: 6s - loss: 0.0145 - acc: 1.0000
+ 300/6816 [>.............................] - ETA: 6s - loss: 0.0146 - acc: 1.0000
+ 400/6816 [>.............................] - ETA: 5s - loss: 0.0136 - acc: 1.0000
+ 500/6816 [=>............................] - ETA: 5s - loss: 0.0150 - acc: 1.0000
+ 600/6816 [=>............................] - ETA: 5s - loss: 0.0142 - acc: 1.0000
+ 700/6816 [==>...........................] - ETA: 5s - loss: 0.0136 - acc: 1.0000
+ 800/6816 [==>...........................] - ETA: 5s - loss: 0.0130 - acc: 1.0000
+ 900/6816 [==>...........................] - ETA: 5s - loss: 0.0132 - acc: 1.0000
+1000/6816 [===>..........................] - ETA: 5s - loss: 0.0133 - acc: 1.0000
+1100/6816 [===>..........................] - ETA: 5s - loss: 0.0135 - acc: 1.0000
+1200/6816 [====>.........................] - ETA: 4s - loss: 0.0140 - acc: 1.0000
+1300/6816 [====>.........................] - ETA: 4s - loss: 0.0143 - acc: 1.0000
+1400/6816 [=====>........................] - ETA: 4s - loss: 0.0139 - acc: 1.0000
+1500/6816 [=====>........................] - ETA: 4s - loss: 0.0137 - acc: 1.0000
+1600/6816 [======>.......................] - ETA: 4s - loss: 0.0140 - acc: 1.0000
+1700/6816 [======>.......................] - ETA: 4s - loss: 0.0139 - acc: 1.0000
+1800/6816 [======>.......................] - ETA: 4s - loss: 0.0137 - acc: 1.0000
+1900/6816 [=======>......................] - ETA: 4s - loss: 0.0137 - acc: 1.0000
+2000/6816 [=======>......................] - ETA: 4s - loss: 0.0138 - acc: 1.0000
+2100/6816 [========>.....................] - ETA: 4s - loss: 0.0137 - acc: 1.0000
+2200/6816 [========>.....................] - ETA: 4s - loss: 0.0141 - acc: 1.0000
+2300/6816 [=========>....................] - ETA: 4s - loss: 0.0139 - acc: 1.0000
+2400/6816 [=========>....................] - ETA: 3s - loss: 0.0139 - acc: 1.0000
+2500/6816 [==========>...................] - ETA: 3s - loss: 0.0139 - acc: 1.0000
+2600/6816 [==========>...................] - ETA: 3s - loss: 0.0138 - acc: 1.0000
+2700/6816 [==========>...................] - ETA: 3s - loss: 0.0141 - acc: 1.0000
+2800/6816 [===========>..................] - ETA: 3s - loss: 0.0143 - acc: 1.0000
+2900/6816 [===========>..................] - ETA: 3s - loss: 0.0144 - acc: 1.0000
+3000/6816 [============>.................] - ETA: 3s - loss: 0.0142 - acc: 1.0000
+3100/6816 [============>.................] - ETA: 3s - loss: 0.0141 - acc: 1.0000
+3200/6816 [=============>................] - ETA: 3s - loss: 0.0142 - acc: 1.0000
+3300/6816 [=============>................] - ETA: 3s - loss: 0.0142 - acc: 1.0000
+3400/6816 [=============>................] - ETA: 3s - loss: 0.0143 - acc: 1.0000
+3500/6816 [==============>...............] - ETA: 2s - loss: 0.0142 - acc: 1.0000
+3600/6816 [==============>...............] - ETA: 2s - loss: 0.0142 - acc: 1.0000
+3700/6816 [===============>..............] - ETA: 2s - loss: 0.0144 - acc: 1.0000
+3800/6816 [===============>..............] - ETA: 2s - loss: 0.0143 - acc: 1.0000
+3900/6816 [================>.............] - ETA: 2s - loss: 0.0142 - acc: 1.0000
+4000/6816 [================>.............] - ETA: 2s - loss: 0.0142 - acc: 1.0000
+4100/6816 [=================>............] - ETA: 2s - loss: 0.0143 - acc: 1.0000
+4200/6816 [=================>............] - ETA: 2s - loss: 0.0142 - acc: 1.0000
+4300/6816 [=================>............] - ETA: 2s - loss: 0.0141 - acc: 1.0000
+4400/6816 [==================>...........] - ETA: 2s - loss: 0.0141 - acc: 1.0000
+4500/6816 [==================>...........] - ETA: 2s - loss: 0.0142 - acc: 1.0000
+4600/6816 [===================>..........] - ETA: 1s - loss: 0.0142 - acc: 1.0000
+4700/6816 [===================>..........] - ETA: 1s - loss: 0.0141 - acc: 1.0000
+4800/6816 [====================>.........] - ETA: 1s - loss: 0.0141 - acc: 1.0000
+4900/6816 [====================>.........] - ETA: 1s - loss: 0.0140 - acc: 1.0000
+5000/6816 [=====================>........] - ETA: 1s - loss: 0.0141 - acc: 1.0000
+5100/6816 [=====================>........] - ETA: 1s - loss: 0.0144 - acc: 0.9998
+5200/6816 [=====================>........] - ETA: 1s - loss: 0.0144 - acc: 0.9998
+5300/6816 [======================>.......] - ETA: 1s - loss: 0.0143 - acc: 0.9998
+5400/6816 [======================>.......] - ETA: 1s - loss: 0.0142 - acc: 0.9998
+5500/6816 [=======================>......] - ETA: 1s - loss: 0.0143 - acc: 0.9998
+5600/6816 [=======================>......] - ETA: 1s - loss: 0.0142 - acc: 0.9998
+5700/6816 [========================>.....] - ETA: 1s - loss: 0.0142 - acc: 0.9998
+5800/6816 [========================>.....] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+5900/6816 [========================>.....] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+6000/6816 [=========================>....] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+6100/6816 [=========================>....] - ETA: 0s - loss: 0.0141 - acc: 0.9998
+6200/6816 [==========================>...] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+6300/6816 [==========================>...] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+6400/6816 [===========================>..] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+6500/6816 [===========================>..] - ETA: 0s - loss: 0.0141 - acc: 0.9998
+6600/6816 [============================>.] - ETA: 0s - loss: 0.0142 - acc: 0.9998
+6700/6816 [============================>.] - ETA: 0s - loss: 0.0141 - acc: 0.9999
+6800/6816 [============================>.] - ETA: 0s - loss: 0.0141 - acc: 0.9999
+6816/6816 [==============================] - 7s 960us/step - loss: 0.0141 - acc: 0.9999 - val_loss: 0.5545 - val_acc: 0.8483
+No of errors = 127/837
+Original label:Noelle_Pikus-Pace\15.jpg, Prediction :Nouriel_Roubini, confidence : 0.943
+Original label:Noelle_Pikus-Pace\22.jpg, Prediction :Nora_Foss_al-Jabri, confidence : 0.817
+Original label:Noelle_Pikus-Pace\27.jpg, Prediction :Noelle_Reno, confidence : 0.544
+Original label:Noelle_Pikus-Pace\3.jpg, Prediction :Nomar_Garciaparra, confidence : 0.404
+Original label:Nolan_Roux\12.jpg, Prediction :Nonito_Donaire, confidence : 0.787
+Original label:Nolan_Roux\14.jpg, Prediction :Nora_Salinas, confidence : 0.383
+Original label:Nolan_Roux\19.jpg, Prediction :Nora_Salinas, confidence : 0.748
+Original label:Nolan_Roux\24.jpg, Prediction :Nolito, confidence : 0.545
+Original label:Nolan_Roux\9.jpg, Prediction :Nolito, confidence : 0.608
+Original label:Nolito\15.jpg, Prediction :Nolan_Roux, confidence : 0.783
+Original label:Nolito\17.jpg, Prediction :Nonito_Donaire, confidence : 0.961
+Original label:Nolwenn_Leroy\13.jpg, Prediction :Nora_Danish, confidence : 0.738
+Original label:Nolwenn_Leroy\19.jpg, Prediction :Nona_Gaye, confidence : 0.513
+Original label:Nolwenn_Leroy\2.jpg, Prediction :Nonami_Takizawa, confidence : 0.607
+Original label:Nolwenn_Leroy\24.jpg, Prediction :Nora_Danish, confidence : 0.868
+Original label:Nolwenn_Leroy\3.jpg, Prediction :Nora_Danish, confidence : 0.351
+Original label:Nolwenn_Leroy\4.jpg, Prediction :Nova_Eliza, confidence : 0.372
+Original label:Nolwenn_Leroy\5.jpg, Prediction :Nova_Eliza, confidence : 0.580
+Original label:Nomar_Garciaparra\12.jpg, Prediction :Nori_Aoki, confidence : 0.883
+Original label:Nomar_Garciaparra\20.jpg, Prediction :Nolan_Roux, confidence : 0.305
+Original label:Nomar_Garciaparra\22.jpg, Prediction :Nori_Aoki, confidence : 0.471
+Original label:Nomar_Garciaparra\27.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.456
+Original label:Nona_Gaye\20.jpg, Prediction :Nonito_Donaire, confidence : 0.563
+Original label:Nona_Gaye\25.jpg, Prediction :Noelle_Reno, confidence : 0.867
+Original label:Nonami_Takizawa\16.jpg, Prediction :Nora_Danish, confidence : 0.949
+Original label:Nonito_Donaire\11.jpg, Prediction :Nolito, confidence : 0.845
+Original label:Nonito_Donaire\15.jpg, Prediction :Nolan_Roux, confidence : 0.840
+Original label:Nonito_Donaire\25.jpg, Prediction :Nova_Eliza, confidence : 0.777
+Original label:Nora_Berra\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.933
+Original label:Nora_Danish\13.jpg, Prediction :kimssok, confidence : 0.348
+Original label:Nora_Foss_al-Jabri\10.jpg, Prediction :Nora_Salinas, confidence : 0.678
+Original label:Nora_Foss_al-Jabri\11.jpg, Prediction :Nora_Danish, confidence : 0.915
+Original label:Nora_Foss_al-Jabri\12.jpg, Prediction :Nora_Danish, confidence : 0.382
+Original label:Nora_Foss_al-Jabri\13.jpg, Prediction :Noelle_Reno, confidence : 0.360
+Original label:Nora_Foss_al-Jabri\14.jpg, Prediction :Nonami_Takizawa, confidence : 0.516
+Original label:Nora_Foss_al-Jabri\15.jpg, Prediction :Nova_Eliza, confidence : 0.461
+Original label:Nora_Foss_al-Jabri\16.jpg, Prediction :Nonami_Takizawa, confidence : 0.699
+Original label:Nora_Foss_al-Jabri\18.jpg, Prediction :Nora_Berra, confidence : 0.458
+Original label:Nora_Foss_al-Jabri\19.jpg, Prediction :Nova_Eliza, confidence : 0.766
+Original label:Nora_Foss_al-Jabri\21.jpg, Prediction :Nora_Danish, confidence : 0.457
+Original label:Nora_Foss_al-Jabri\23.jpg, Prediction :Noelle_Reno, confidence : 0.983
+Original label:Nora_Foss_al-Jabri\25.jpg, Prediction :Nolwenn_Leroy, confidence : 0.364
+Original label:Nora_Foss_al-Jabri\27.jpg, Prediction :Noelle_Reno, confidence : 0.258
+Original label:Nora_Foss_al-Jabri\28.jpg, Prediction :Nora_Salinas, confidence : 0.663
+Original label:Nora_Foss_al-Jabri\29.jpg, Prediction :Nova_Eliza, confidence : 0.562
+Original label:Nora_Foss_al-Jabri\30.jpg, Prediction :Nora_Danish, confidence : 0.464
+Original label:Nora_Foss_al-Jabri\7.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.851
+Original label:Nora_Salinas\13.jpg, Prediction :Nora_Danish, confidence : 0.960
+Original label:Nora_Salinas\15.jpg, Prediction :Noelle_Reno, confidence : 0.500
+Original label:Nora_Salinas\16.jpg, Prediction :ivy, confidence : 0.684
+Original label:Nora_Salinas\23.jpg, Prediction :Nolwenn_Leroy, confidence : 0.372
+Original label:Nora_Salinas\24.jpg, Prediction :Nova_Eliza, confidence : 0.457
+Original label:Nora_Salinas\25.jpg, Prediction :Nolwenn_Leroy, confidence : 0.540
+Original label:Nora_Salinas\7.jpg, Prediction :Nora_Danish, confidence : 0.970
+Original label:Norbert_Blüm\27.jpg, Prediction :leejaemyeng, confidence : 0.599
+Original label:Norbert_Lammert\16.jpg, Prediction :Norbert_Blüm, confidence : 0.667
+Original label:Norbert_Lammert\25.jpg, Prediction :moonjaein, confidence : 0.784
+Original label:Norbert_Lammert\26.jpg, Prediction :Norbert_Blüm, confidence : 0.804
+Original label:Nori_Aoki\13.jpg, Prediction :Nomar_Garciaparra, confidence : 0.499
+Original label:Nori_Aoki\15.jpg, Prediction :Nova_Eliza, confidence : 0.405
+Original label:Nori_Aoki\16.jpg, Prediction :Nonito_Donaire, confidence : 0.395
+Original label:Nori_Aoki\20.jpg, Prediction :Nomar_Garciaparra, confidence : 0.379
+Original label:Nouriel_Roubini\24.jpg, Prediction :Noelle_Reno, confidence : 0.713
+Original label:Nova_Eliza\11.jpg, Prediction :Nora_Danish, confidence : 0.399
+Original label:ParkSunhee\9.jpg, Prediction :Nonito_Donaire, confidence : 0.741
+Original label:anheejeong\12.jpg, Prediction :moonjaein, confidence : 0.989
+Original label:anheejeong\13.jpg, Prediction :Norbert_Lammert, confidence : 0.981
+Original label:anheejeong\21.jpg, Prediction :moonjaein, confidence : 0.553
+Original label:ivy\1.jpg, Prediction :Nora_Danish, confidence : 0.537
+Original label:ivy\4.jpg, Prediction :Norah_ODonnell, confidence : 0.189
+Original label:ivy\5.jpg, Prediction :Nonito_Donaire, confidence : 0.509
+Original label:ivy\6.jpg, Prediction :Nova_Eliza, confidence : 0.368
+Original label:ivy\7.jpg, Prediction :Nonami_Takizawa, confidence : 0.326
+Original label:ivy\8.jpg, Prediction :Norah_ODonnell, confidence : 0.377
+Original label:jeongryeonwon\10.jpg, Prediction :jeonhyoseong, confidence : 0.312
+Original label:jeongryeonwon\11.jpg, Prediction :Nova_Eliza, confidence : 0.439
+Original label:jeongryeonwon\15.jpg, Prediction :Nora_Danish, confidence : 0.859
+Original label:jeongryeonwon\6.jpg, Prediction :jeonhyoseong, confidence : 0.556
+Original label:jeonhyoseong\5.jpg, Prediction :Nora_Danish, confidence : 0.655
+Original label:jeonhyoseong\7.jpg, Prediction :ivy, confidence : 0.926
+Original label:jeonhyoseong\9.jpg, Prediction :Nova_Eliza, confidence : 0.719
+Original label:kimssok\1.jpg, Prediction :Noelle_Pikus-Pace, confidence : 0.324
+Original label:kimssok\5.jpg, Prediction :Nora_Danish, confidence : 0.430
+Original label:leejaemyeng\10.jpg, Prediction :anheejeong, confidence : 0.546
+Original label:leejaemyeng\24.jpg, Prediction :Nouriel_Roubini, confidence : 0.722
+Original label:leejaemyeng\3.jpg, Prediction :moonjaein, confidence : 0.801
+Original label:leejaemyeng\4.jpg, Prediction :Norbert_Blüm, confidence : 0.802
+Original label:leejaemyeng\9.jpg, Prediction :Norah_ODonnell, confidence : 0.430
+Original label:leejeongje\10.jpg, Prediction :Norbert_Blüm, confidence : 0.354
+Original label:leejeongje\14.jpg, Prediction :Nora_Salinas, confidence : 0.895
+Original label:leejeongje\5.jpg, Prediction :Nolito, confidence : 0.774
+Original label:leejeongje\8.jpg, Prediction :jeongryeonwon, confidence : 0.283
+Original label:leejeongje\9.jpg, Prediction :yooseyoon, confidence : 0.593
+Original label:moonjaein\11.jpg, Prediction :Noelle_Reno, confidence : 0.504
+Original label:moonjaein\13.jpg, Prediction :Nolan_Roux, confidence : 0.818
+Original label:moonjaein\14.jpg, Prediction :Norbert_Lammert, confidence : 0.933
+Original label:moonjaein\15.jpg, Prediction :anheejeong, confidence : 0.859
+Original label:moonjaein\21.jpg, Prediction :Norbert_Blüm, confidence : 0.602
+Original label:moonjaein\23.jpg, Prediction :Norbert_Blüm, confidence : 0.383
+Original label:moonjaein\24.jpg, Prediction :Nolan_Roux, confidence : 0.701
+Original label:moonjaein\8.jpg, Prediction :Norbert_Blüm, confidence : 0.494
+Original label:narsha\4.jpg, Prediction :Nora_Salinas, confidence : 0.382
+Original label:narsha\6.jpg, Prediction :Nora_Danish, confidence : 0.958
+Original label:narsha\8.jpg, Prediction :ivy, confidence : 0.266
+Original label:narsha\9.jpg, Prediction :Norah_ODonnell, confidence : 0.280
+Original label:parknare\1.jpg, Prediction :Nora_Salinas, confidence : 0.420
+Original label:parknare\7.jpg, Prediction :jeongryeonwon, confidence : 0.219
+Original label:parknare\8.jpg, Prediction :Norah_ODonnell, confidence : 0.905
+Original label:parknare\9.jpg, Prediction :Nolwenn_Leroy, confidence : 0.319
+Original label:parksohyun\3.jpg, Prediction :Nora_Danish, confidence : 0.310
+Original label:parksohyun\6.jpg, Prediction :kimssok, confidence : 0.331
+Original label:parksohyun\8.jpg, Prediction :ParkMinjeong, confidence : 0.296
+Original label:parksohyun\9.jpg, Prediction :Nonami_Takizawa, confidence : 0.991
+Original label:songeunhee\1.jpg, Prediction :Nolwenn_Leroy, confidence : 0.998
+Original label:songeunhee\3.jpg, Prediction :Nolwenn_Leroy, confidence : 0.512
+Original label:songeunhee\4.jpg, Prediction :parksohyun, confidence : 0.812
+Original label:songeunhee\7.jpg, Prediction :Norah_ODonnell, confidence : 0.905
+Original label:songeunhee\8.jpg, Prediction :Nolwenn_Leroy, confidence : 1.000
+Original label:songeunhee\9.jpg, Prediction :Norah_ODonnell, confidence : 0.474
+Original label:yooseyoon\1.jpg, Prediction :Nona_Gaye, confidence : 0.577
+Original label:yooseyoon\11.jpg, Prediction :kimssok, confidence : 0.521
+Original label:yooseyoon\13.jpg, Prediction :leejeongje, confidence : 0.505
+Original label:yooseyoon\3.jpg, Prediction :leejaemyeng, confidence : 0.541
+Original label:yooseyoon\5.jpg, Prediction :leejeongje, confidence : 0.636
+Original label:yooseyoon\6.jpg, Prediction :anheejeong, confidence : 0.618
+Original label:yooseyoon\7.jpg, Prediction :Nolwenn_Leroy, confidence : 0.829
+Original label:yooseyoon\9.jpg, Prediction :Nolwenn_Leroy, confidence : 0.630
